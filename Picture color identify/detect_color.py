@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 
+image = "stop.jpg"
+
 def color_detect(image_path, lower, upper):
 	bounderies = [([0, 0, lower], [75, 75, upper])]
 	# The color order is BGR, so it is 0 ,0, lower and 75, 75, upper
@@ -13,7 +15,7 @@ def color_detect(image_path, lower, upper):
 		cv2.imshow("Red Detection", np.hstack([image, output, ]))
 		cv2.waitKey(0)
 
-color_detect("stop.jpg", 150, 250)
+color_detect(image, 100, 250)
 
 # Find most common color code
 
@@ -58,5 +60,5 @@ def get_colors(image, number_of_colors, show_chart):
 		
     return rgb_colors
 
-get_colors(get_image('stop.jpg'), 8, True)
+get_colors(get_image(image), 8, True)
 plt.show()
