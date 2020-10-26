@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 
+
 image = "stop.jpg"
 
 def color_detect(image_path, lower, upper):
@@ -15,7 +16,7 @@ def color_detect(image_path, lower, upper):
 		cv2.imshow("Red Detection", np.hstack([image, output, ]))
 		cv2.waitKey(0)
 
-color_detect(image, 100, 250)
+color_detect(image, 180, 250)
 
 # # Find most common color code
 

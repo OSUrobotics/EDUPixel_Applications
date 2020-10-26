@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 
 event2canvas = lambda e, c: (c.canvasx(e.x), c.canvasy(e.y))
 
-File = "stop2.jpg"
+File = "stop.jpg"
 
 if __name__ == "__main__":
     root = Tk()
