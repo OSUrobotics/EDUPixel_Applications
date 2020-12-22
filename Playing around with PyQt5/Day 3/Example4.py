@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy as np
 import cv2
+import os
 
 class Ui_MainWindow(object):
    
@@ -91,9 +92,8 @@ class Ui_MainWindow(object):
         self.imageBtn.clicked.connect(self.setImage)
         self.redMinBtn.clicked.connect(self.redMinUpdate)
         self.redMaxBtn.clicked.connect(self.redMaxUpdate)
+        #TODO: Do it as a checkbox, not a button
         self.doItBtn.clicked.connect(self.color_detect)
-        
-        
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -117,6 +117,8 @@ class Ui_MainWindow(object):
             self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
             self.imageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
 
+    #TODO: Update the number as the slider moves
+
     def redMinUpdate(self):        
         value = self.redMinSlider.sliderPosition()
         self.redMinValue.setNum(value)
@@ -132,16 +134,29 @@ class Ui_MainWindow(object):
         if((self.redMin > self.redMax) or (self.filePath == "No_Path")):
             print("This is going to fail")
         else:
-            # TODO: Need to figure out with PyQt5 and without opencv-python package
-            bounderies = [([0, 0, self.redMin], [75, 75, self.redMax])]
-            image = cv2.imread(image_path)
-            for (self.redMin, self.redMax) in bounderies:
-                self.redMin = np.array(self.redMin, dtype = "uint8")
-                self.redMax = np.array(self.redMax, dtype = "uint8")
-                mask = cv2.inRange(image, self.redMin, self.redMax)
-                output = cv2.bitwise_and(image, image, mask = mask)
-                cv2.imshow("Red Detection", np.hstack([image, output, ]))
-                cv2.waitKey(0)
+            # Adding a filter on the image just to detect red
+            image = cv2.imread(self.filePath)
+            self.redLower = np.array([0, 0, self.redMin], dtype = "uint8")
+            self.redUpper = np.array([75, 75, self.redMax], dtype = "uint8")
+            mask = cv2.inRange(image, self.redLower, self.redUpper)
+            output = cv2.bitwise_and(image, image, mask = mask)
+            
+            # Create a new image so that the GUI will replace the picture
+            cv2.imwrite("Red_Detection.png", output)
+            fileName = "Red_Detection.png"
+            
+            # Same as setImage function
+            pixmap = QtGui.QPixmap(fileName) # Setup pixmap with the provided image
+            pixmap = pixmap.scaled(self.imageLbl.width(), self.imageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
+            self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
+            self.imageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
+            
+            # Remove the file that has the filter
+            os.remove(fileName)
+
+
+
+            
 
 
 
