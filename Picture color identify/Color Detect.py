@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import numpy as np
+import numpy as np 
 import cv2
 import os
 
@@ -68,6 +68,7 @@ class Ui_MainWindow(object):
         self.redMaxSlider.setGeometry(QtCore.QRect(440, 60, 211, 22))
         self.redMaxSlider.setMaximum(255)
         self.redMaxSlider.setOrientation(QtCore.Qt.Horizontal)
+        self.redMaxSlider.setSliderPosition(255)
         self.redMaxSlider.setObjectName("redMaxSlider")
 
         self.redMaxValue = QtWidgets.QLabel(self.centralwidget)
@@ -77,9 +78,10 @@ class Ui_MainWindow(object):
         self.redMaxValue.setObjectName("redMaxValue")
         self.redMaxValue.setNum(255)
 
-        self.doItBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.doItBtn.setGeometry(QtCore.QRect(20, 500, 75, 23))
-        self.doItBtn.setObjectName("doItBtn")
+        self.colorDetectCheck = QtWidgets.QCheckBox(self.centralwidget)
+        self.colorDetectCheck.setGeometry(QtCore.QRect(20, 440, 71, 21))
+        self.colorDetectCheck.setObjectName("colorDetectCheck")
+
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -92,47 +94,81 @@ class Ui_MainWindow(object):
         self.imageBtn.clicked.connect(self.setImage)
         self.redMinBtn.clicked.connect(self.redMinUpdate)
         self.redMaxBtn.clicked.connect(self.redMaxUpdate)
-        #TODO: Do it as a checkbox, not a button
-        self.doItBtn.clicked.connect(self.color_detect)
+
+        # Functions with CheckBox
+        self.colorDetectCheck.stateChanged.connect(self.checkBoxSwitch)
+
+        # Functions with Slider
+        self.redMinSlider.valueChanged.connect(self.updateMinValues)
+        self.redMaxSlider.valueChanged.connect(self.updateMaxValues)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Red Color Detector"))
         self.redMinText.setText(_translate("MainWindow", "Red Min"))
         self.imageBtn.setText(_translate("MainWindow", "Select Image"))
         self.redMinBtn.setText(_translate("MainWindow", "Confirm"))
         self.redMaxText.setText(_translate("MainWindow", "Red Max"))
         self.redMaxBtn.setText(_translate("MainWindow", "Confirm"))
-        self.doItBtn.setText(_translate("MainWindow", "Execute"))
+        self.colorDetectCheck.setText(_translate("MainWindow", "Execute"))
 
     def setImage(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Select Image", "", "Image Files (*.png *.jpg *jpeg *.bmp)") # Ask for file
         self.filePath = fileName
-        if fileName: # If the user gives a file
+        if (fileName): # If the user gives a file
             pixmap = QtGui.QPixmap(fileName) # Setup pixmap with the provided image
             pixmap = pixmap.scaled(self.imageLbl.width(), self.imageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
             self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
             self.imageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
 
-    #TODO: Update the number as the slider moves
-
     def redMinUpdate(self):        
-        value = self.redMinSlider.sliderPosition()
-        self.redMinValue.setNum(value)
-        self.redMin = value
-
+        self.redMin = self.redMinSlider.sliderPosition()
         
     def redMaxUpdate(self):
-        value = self.redMaxSlider.sliderPosition()
-        self.redMaxValue.setNum(value)
-        self.redMax = value
+        self.redMax = self.redMaxSlider.sliderPosition()
+
+    def updateMinValues(self):
+        self.redMinValue.setNum(self.redMinSlider.sliderPosition())
+
+    def updateMaxValues(self):
+        self.redMaxValue.setNum(self.redMaxSlider.sliderPosition())
+
+    def checkBoxSwitch(self):
+
+        if (self.filePath == "No_Path") and (self.colorDetectCheck.isChecked() == True):
+            self.error1()
+            self.colorDetectCheck.setCheckState(0)
+
+        elif (self.colorDetectCheck.isChecked()):
+            self.color_detect()
+
+        else:
+            pixmap = QtGui.QPixmap(self.filePath) # Setup pixmap with the provided image
+            pixmap = pixmap.scaled(self.imageLbl.width(), self.imageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
+            self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
+            self.imageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
+
+    def error1(self):
+        errorMessage1 = QtWidgets.QMessageBox()
+        errorMessage1.setWindowTitle("Error")
+        errorMessage1.setText("Please Select an Image File!")
+        errorMessage1.setIcon(QtWidgets.QMessageBox.Critical)
+        x = errorMessage1.exec_()
+
+    def error2(self):
+        errorMessage2 = QtWidgets.QMessageBox()
+        errorMessage2.setWindowTitle("Error")
+        errorMessage2.setText("Invalid Color Range!")
+        errorMessage2.setIcon(QtWidgets.QMessageBox.Critical)
+        x = errorMessage2.exec_()
+        
 
     def color_detect(self):
-        if((self.redMin > self.redMax) or (self.filePath == "No_Path")):
-            print("This is going to fail")
+        if(self.redMin > self.redMax):
+            self.error2()
         else:
             # Adding a filter on the image just to detect red
             image = cv2.imread(self.filePath)
@@ -153,12 +189,6 @@ class Ui_MainWindow(object):
             
             # Remove the file that has the filter
             os.remove(fileName)
-
-
-
-            
-
-
 
 if __name__ == "__main__":
     import sys
