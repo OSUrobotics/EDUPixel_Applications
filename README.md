@@ -1,13 +1,12 @@
-List of to do to finish the program aspect
-1. Create a Pop up warning if the user did something wrong: in the file for Picture Color Identify Folder program (Done)
-2. Update the final GUI with its update code that I have (Done)
-3. Start working on Color Code Picker and let the user to change the pixel value 
-4. Need to discuss for more ideas to add on the program
+Task that will be done before Winter 2021 starts
+1. Create a function that will create a new Image repescting the label size without adjusting the ratio of the image: This will make the color code picker program easier to work with
+2. Update the Image as the user enter their own pixel value for certain location on an image
+3. Integrate two main programs into one combine form while having two GUI: One for just Image while other for Settings or adjusting values: Need to update the Layout
+4. Have a button for analyize what are the most common color that can be found in a certain image that will create a new window for the data analysis information
+5. Rewrite the Program purpose and ideas in either this readme file for Wiki: More leading toward Readme
 
-List that should need to have
-1. Menu selection that goes between two different programs within one GUI (Not Needed)
-2. Get the color code of a pixel from an image from user selection
-3. Change the pixel color from user input and save it as a new image when do the detect color process
-4. Have a preview color when the user change the color for a certian pixel (Done)
-5. Statictis for what are the most common color can be found in a certain image
+Task that I completed
+1. Object Semi-Identiy Program standalone with user settings to play around with
+2. 2/3 done with the color code picker and editor of a certain image
 
+These are just notes for Kenneth Kang in case I get lost
