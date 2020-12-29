@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import imageio
 
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -100,11 +101,12 @@ class Ui_MainWindow(object):
         self.blueValue = 0
 
 
+
         # Functions with Button
         self.imageBtn.clicked.connect(self.setImage)
 
         # Functions with Mouse Event
-        self.imageLbl.mousePressEvent = self.getPosition
+        self.imageLbl.mousePressEvent = self.getPositionAndColor
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -124,26 +126,29 @@ class Ui_MainWindow(object):
         self.filePath = fileName
         if (fileName): # If the user gives a file
             pixmap = QtGui.QPixmap(fileName) # Setup pixmap with the provided image
-            pixmap = pixmap.scaled(self.imageLbl.width(), self.imageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
             self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
-            self.imageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
+            self.imageLbl.adjustSize()
+            self.imageLbl.setAlignment(QtCore.Qt.AlignLeft)
 
-    def getPosition(self, event):
+    def getPositionAndColor(self, event):
         self.xValue = event.pos().x()
         self.yValue = event.pos().y()
         self.xValueText.setNum(self.xValue)
         self.yValueText.setNum(self.yValue)
         # Must need a filepath before you click something on the label
         # TODO: Need some help from Sogol for programming aspect
-        img = imageio.imread(self.filePath)
-        self.redValue = img[ self.xValue, self.yValue, 0]
-        self.greenValue = img[ self.xValue, self.yValue, 1]
-        self.blueValue = img[ self.xValue, self.yValue, 2]
+        qImg = QtGui.QImage(self.filePath)
+        c = qImg.pixel(self.xValue, self.yValue)
+        colors = QtGui.QColor(c).getRgb()
+        self.redValue = colors[0]
+        self.blueValue = colors[1]
+        self.greenValue = colors[2]
         self.redValueText.setNum(self.redValue)
         self.greenValueText.setNum(self.greenValue)
         self.blueValueText.setNum(self.blueValue)
         hexColor = '#'+'%02x%02x%02x' % (self.redValue, self.greenValue, self.blueValue)
         self.previewColor.setStyleSheet(f'background-color: {hexColor}')
+    
 
 
 if __name__ == "__main__":
