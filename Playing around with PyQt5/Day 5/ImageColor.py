@@ -9,19 +9,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import imageio
+import cv2
 
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        # Global Variables Function First
+        
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(771, 609)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
         self.imageLbl = QtWidgets.QLabel(self.centralwidget)
-        self.imageLbl.setGeometry(QtCore.QRect(20, 20, 531, 481))
+        self.imageLbl.setGeometry(QtCore.QRect(20, 20, 530, 480)) # self.width = 530, self.height = 480
         self.imageLbl.setFrameShape(QtWidgets.QFrame.Box)
         self.imageLbl.setText("")
         self.imageLbl.setObjectName("imageLbl")
@@ -93,12 +95,15 @@ class Ui_MainWindow(object):
         # MainWindow.setStatusBar(self.statusbar)
 
         # Global Variables
+        #TODO: Make functions for both Global Variables and Connections with Buttons and others so that it is easy to read for users
         self.filePath = "No_Path"
         self.xValue = 0
         self.yValue = 0
         self.redValue = 0
         self.greenValue = 0
         self.blueValue = 0
+        self.height = 480
+        self.width = 530
 
 
 
@@ -123,11 +128,15 @@ class Ui_MainWindow(object):
 
     def setImage(self):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Select Image", "", "Image Files (*.png *.jpg *jpeg *.bmp)") # Ask for file
-        self.filePath = fileName
-        if (fileName): # If the user gives a file
+        if (fileName):
+            newImg = cv2.imread(fileName)
+            dsize = (self.width, self.height)
+            output = cv2.resize(newImg, dsize)
+            cv2.imwrite("NewSizedImage.png", output)
+            self.filePath = "NewSizedImage.png"
+            fileName = "NewSizedImage.png"
             pixmap = QtGui.QPixmap(fileName) # Setup pixmap with the provided image
             self.imageLbl.setPixmap(pixmap) # Set the pixmap onto the label
-            self.imageLbl.adjustSize()
             self.imageLbl.setAlignment(QtCore.Qt.AlignLeft)
 
     def getPositionAndColor(self, event):

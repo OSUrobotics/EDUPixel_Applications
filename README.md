@@ -1,6 +1,6 @@
 Task that will be done before Winter 2021 starts
-1. Create a function that will create a new Image repescting the label size without adjusting the ratio of the image: This will make the color code picker program easier to work with
-2. Update the Image as the user enter their own pixel value for certain location on an image
+1. Create a function that will create a new Image repescting the label size without adjusting the ratio of the image: This will make the color code picker program easier to work with (Done)
+2. Update the Image as the user enter their own pixel value for certain location on an image (Done)
 3. Integrate two main programs into one combine form while having two GUI: One for just Image while other for Settings or adjusting values: Need to update the Layout
 4. Have a button for analyize what are the most common color that can be found in a certain image that will create a new window for the data analysis information
 5. Rewrite the Program purpose and ideas in either this readme file for Wiki: More leading toward Readme
