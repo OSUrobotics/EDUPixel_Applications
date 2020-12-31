@@ -1,13 +1,16 @@
 ###########################################################################################################################
 ## Author: Kenneth Kang                                                                                                  ##
 ## Purpose: This will identify the color of the image by the user color range for each Red, Green, and Blue value. This  ##
-## software/GUI was created to aware the individuals to know the limitation of computer vision that computer vision is   ## 
+## software/GUI was created to aware the individuals to know the limitation of computer vision that computer vision is   ##
 ## not perfect to be depended. In other words, it is an education software for the users to play around with it.         ##
 ##                                                                                                                       ##
 ## Dependencies: PyQt5, Numpy, cv2, OS                                                                                   ##
 ##                                                                                                                       ##
 ## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
 ###########################################################################################################################
+
+
+# https://realpython.com/documenting-python-code/ Need to Document the entire code when I complete it
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy as np
