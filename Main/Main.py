@@ -417,7 +417,7 @@ class Ui_MainWindow(object):
         self.greenMinValue.setObjectName("greenMinValue")
 
         self.line = QtWidgets.QFrame(self.centralwidget)
-        self.line.setGeometry(QtCore.QRect(500, 50, 20, 651))
+        self.line.setGeometry(QtCore.QRect(480, 50, 20, 651))
         self.line.setFrameShadow(QtWidgets.QFrame.Plain)
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setObjectName("line")
@@ -434,25 +434,25 @@ class Ui_MainWindow(object):
         self.colorChangeText.setObjectName("colorChangeText")
 
         self.borderLineWithGB = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithGB.setGeometry(QtCore.QRect(-20, 490, 531, 20))
+        self.borderLineWithGB.setGeometry(QtCore.QRect(-20, 490, 511, 20))
         self.borderLineWithGB.setFrameShadow(QtWidgets.QFrame.Plain)
         self.borderLineWithGB.setFrameShape(QtWidgets.QFrame.HLine)
         self.borderLineWithGB.setObjectName("borderLineWithGB")
 
         self.borderLineWithRG = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithRG.setGeometry(QtCore.QRect(-20, 280, 531, 20))
+        self.borderLineWithRG.setGeometry(QtCore.QRect(-20, 280, 511, 20))
         self.borderLineWithRG.setFrameShadow(QtWidgets.QFrame.Plain)
         self.borderLineWithRG.setFrameShape(QtWidgets.QFrame.HLine)
         self.borderLineWithRG.setObjectName("borderLineWithRG")
 
         self.borderLineWithImg = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithImg.setGeometry(QtCore.QRect(510, 420, 671, 16))
+        self.borderLineWithImg.setGeometry(QtCore.QRect(490, 390, 691, 20))
         self.borderLineWithImg.setFrameShadow(QtWidgets.QFrame.Plain)
         self.borderLineWithImg.setFrameShape(QtWidgets.QFrame.HLine)
         self.borderLineWithImg.setObjectName("borderLineWithImg")
 
         self.imgBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.imgBtn.setGeometry(QtCore.QRect(540, 450, 280, 90))
+        self.imgBtn.setGeometry(QtCore.QRect(540, 410, 280, 90))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(26)
@@ -460,7 +460,7 @@ class Ui_MainWindow(object):
         self.imgBtn.setObjectName("imgBtn")
 
         self.executeDetect = QtWidgets.QCheckBox(self.centralwidget)
-        self.executeDetect.setGeometry(QtCore.QRect(540, 550, 281, 51))
+        self.executeDetect.setGeometry(QtCore.QRect(540, 510, 281, 51))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(18)
@@ -468,7 +468,7 @@ class Ui_MainWindow(object):
         self.executeDetect.setObjectName("executeDetect")
 
         self.resetBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.resetBtn.setGeometry(QtCore.QRect(520, 610, 151, 51))
+        self.resetBtn.setGeometry(QtCore.QRect(520, 610, 101, 31))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
@@ -476,7 +476,7 @@ class Ui_MainWindow(object):
         self.resetBtn.setObjectName("resetBtn")
 
         self.descriptionBox = QtWidgets.QTextBrowser(self.centralwidget)
-        self.descriptionBox.setGeometry(QtCore.QRect(850, 450, 311, 221))
+        self.descriptionBox.setGeometry(QtCore.QRect(860, 410, 311, 261))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(12)
@@ -532,12 +532,31 @@ class Ui_MainWindow(object):
         self.author.setObjectName("label")
 
         self.analyzeBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.analyzeBtn.setGeometry(QtCore.QRect(690, 610, 151, 51))
+        self.analyzeBtn.setGeometry(QtCore.QRect(690, 600, 151, 51))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(20)
         self.analyzeBtn.setFont(font)
         self.analyzeBtn.setObjectName("analyzeBtn")
+
+
+        self.numClusterInput = QtWidgets.QLineEdit(self.centralwidget)
+        self.numClusterInput.setGeometry(QtCore.QRect(800, 570, 41, 25))
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(14)
+        self.numClusterInput.setFont(font)
+        self.numClusterInput.setText("7")
+        self.numClusterInput.setAlignment(QtCore.Qt.AlignCenter)
+        self.numClusterInput.setObjectName("numClusterInput")
+
+        self.questionText = QtWidgets.QLabel(self.centralwidget)
+        self.questionText.setGeometry(QtCore.QRect(500, 570, 301, 16))
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(12)
+        self.questionText.setFont(font)
+        self.questionText.setObjectName("questionText")
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -620,6 +639,10 @@ class Ui_MainWindow(object):
 
     def openAnalyze(self):
         global filePath, num_clusters
+
+        if (self.numClusterInput.text()):
+            num_clusters = int(self.numClusterInput.text())
+
         if filePath == "No_Path":
             self.error1()
         else:
@@ -792,7 +815,7 @@ class Ui_MainWindow(object):
         self.window.show()
         
     def resetAll(self):
-        global filePath, xValue, yValue, redMin, redMax, greenMin, greenMax, blueMin, blueMax, redValue, greenValue, blueValue, failed, width, height
+        global filePath, xValue, yValue, redMin, redMax, greenMin, greenMax, blueMin, blueMax, redValue, greenValue, blueValue, failed, width, height, num_clusters
         filePath = "No_Path"
         xValue = 0
         yValue = 0
@@ -808,7 +831,9 @@ class Ui_MainWindow(object):
         failed = False
         width = 0
         height = 0
+        num_clusters = 7
         self.executeDetect.setCheckState(0)
+        self.numClusterInput.setText("7")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -838,11 +863,14 @@ class Ui_MainWindow(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">In this program, you can change the range of color detection in the Color Range Detection Side and clicking Execute Color Detection checkbox.</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">At the same time, you can also change certain pixel color value by clicking the image location and changing it on the Color Pixel Changer Side.</p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">At the same time, you can also change certain pixel color value by clicking the image location and changing it on the Color Pixel Changer Side.</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Last, you can get the most common colors in the image by entering how many as integer and click Analyze.</p></body></html>"))
         self.xText.setText(_translate("MainWindow", "X"))
         self.yText.setText(_translate("MainWindow", "Y"))
         self.author.setText(_translate("MainWindow", "Created by Kenneth Kang"))
         self.analyzeBtn.setText(_translate("MainWindow", "Analyze"))
+        self.questionText.setText(_translate("MainWindow", "How many top common colors you want to find?"))
 
 if __name__ == "__main__":
     import sys
