@@ -951,7 +951,7 @@
    <widget class="QPushButton" name="imgBtn">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>520</x>
       <y>450</y>
       <width>280</width>
       <height>90</height>
@@ -989,7 +989,7 @@
    <widget class="QPushButton" name="resetBtn">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>520</x>
       <y>610</y>
       <width>151</width>
       <height>51</height>
@@ -1143,6 +1143,25 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="text">
      <string>Created by Kenneth Kang</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="analyzeBtn">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>610</y>
+      <width>151</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Analyze</string>
     </property>
    </widget>
   </widget>

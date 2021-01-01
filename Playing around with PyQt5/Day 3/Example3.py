@@ -44,6 +44,8 @@ class Ui_MainWindow(object):
         self.imageBtn = QtWidgets.QPushButton(self.centralwidget)
         self.imageBtn.setGeometry(QtCore.QRect(100, 380, 75, 23))
         self.imageBtn.setObjectName("imageBtn")
+
+        
         
         MainWindow.setCentralWidget(self.centralwidget)
 
