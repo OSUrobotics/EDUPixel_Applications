@@ -4,7 +4,7 @@
 ## contains an analysis system to detect what are the most common color in a user selected image. It still serves the    ##
 ## same purpose of education each individuals of the lack of computer vision and Artifical Intelligence.                 ##
 ##                                                                                                                       ##
-## Dependencies: PyQt5, Numpy, cv2, OS, sklearn                                                                          ##
+## Dependencies: PyQt5, Numpy, cv2, sklearn, sys                                                                         ##
 ##                                                                                                                       ##
 ## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
 ###########################################################################################################################
@@ -15,9 +15,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import numpy as np
 import cv2
 from sklearn.cluster import KMeans
-import os
 
-# Global Variables Between Two Classes
+# Global Variables Between Three Classes
 filePath = "No_Path"
 xValue = 0
 yValue = 0
@@ -38,9 +37,21 @@ num_clusters = 7
 
 class Image(object):
     """
-    This class is for the child GUI for displaying the image for user selection. 
+    This class is the child GUI for displaying the image from user selection
     """
     def setupUi(self, MainWindow, width, height):
+        """
+        Initializes the child GUI that only have a QLabel from PyQt5
+        At the same time, it also link other functions to each object
+
+        Connected Functions:
+            MouseEvent: When the user select an position on the Image Label, it will trigger captureIt function 
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+            width: The width of the GUI
+            height: The height of the GUI
+        """
         MainWindow.setObjectName("Image")
         MainWindow.resize(width, height)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -60,10 +71,25 @@ class Image(object):
 
 
     def retranslateUi(self, MainWindow):
+        """
+        Replaces the name of the object when it displayes to the user
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Image"))
 
     def captureIt(self, event):
+        """
+        Get all the information of the positions and color RGB values when the user
+
+        Args:
+            event: It registers the event information of the user selection when the left mouse is clicked
+
+        Returns:
+            It will replace the global variables of xValue, yValue, redValue, greenValue, and blueValue to be used in other classes
+        """
         global xValue, yValue, redValue, greenValue, blueValue, filePath
         xValue = event.pos().x()
         yValue = event.pos().y()
@@ -76,9 +102,16 @@ class Image(object):
 
 class AnalyzeColor(object):
     """
-    . 
+    This class is another child GUI for displaying the most common color from user selection of image and numbers
     """
     def setupUi(self, MainWindow, width):
+        """
+        Initializes the child GUI that only have a QLabel from PyQt5
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+            width: The width of the GUI
+        """
         MainWindow.setObjectName("Analyze")
         MainWindow.resize(width, 200)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -95,12 +128,55 @@ class AnalyzeColor(object):
 
 
     def retranslateUi(self, MainWindow):
+        """
+        Replaces the name of the object when it displayes to the user
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", f'Top {num_clusters} Most Common Colors with Color Code'))
 
 class Ui_MainWindow(object):
+    """
+    This is the parent class of the two child classes for GUI
+    In other words, this is the main GUI for this program
+    """
     
     def setupUi(self, MainWindow):
+        """
+        Initializes the child GUI that only have a QLabel from PyQt5
+        At the same time, it also link other functions to each object
+
+        Connected Functions:
+            Format: Description
+                Object Name: Function
+
+            Timer: Set a timer for every 0.01 second to trigger updateValue function
+            
+            Button: By pressing the button will trigger certain function
+               imgBtn: openWindow function
+               changeColorBtn: changePixel function
+               resetBtn: resetAll function
+               analyzeBtn: openAnalyze function
+             
+            Checkbox: By checking on and off will trigger a certain function
+                executeDetect: colorDetect function
+
+            Slider: By changing the position of the slider will trigger certain function
+                redSlider: colorChangeRed function
+                greenSlider: colorChangeGreen function
+                blueSlider: colorChangeBlue function
+                redMinSlider: redMinUpdate function
+                redMaxSlider: redMaxUpdate function
+                greenMinSlider: greenMinUpdate function
+                greenMaxSlider: greenMaxUpdate function
+                blueMinSlider: blueMinUpdate function
+                blueMaxSlider: blueMaxUpdate function 
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
 
         # Global Variables
         global filePath, xValue, yValue, redValue, greenValue, blueValue, redMin, redMax, greenMin, greenMax, blueMin, blueMax 
@@ -593,6 +669,15 @@ class Ui_MainWindow(object):
         self.blueMaxSlider.valueChanged.connect(self.blueMaxUpdate)
 
     def openWindow(self):
+        """
+        Open a file selection screen for only Image file type and show the image once the user has selected
+        This image will be display from the child GUI of the Image Class
+        It will replace the global variables width, height, and filePath as the following
+            width: The width of the Image will be used for setting up the Image GUI 
+            height: The height of the Image will be used for setting up the Image GUI
+            filePath: This filePath of the Image as NewImage.png that will create a new copy that the file will only
+                      be modify as the program continues to run while the original image is saved as a copy
+        """
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Select Image", "", "Image Files (*.png *.jpg *jpeg *.bmp)") # Ask for file
         if (fileName):
             global width, height, filePath
@@ -610,26 +695,33 @@ class Ui_MainWindow(object):
             self.window.show()
 
     def make_histogram(self,cluster):
-    # """
-    # Count the number of pixels in each cluster
-    # :param: KMeans cluster
-    # :return: numpy histogram
-    # """
+        """
+        Count the number of pixels in each cluster
+
+        Args:
+            cluster: The KMeans cluster
+
+        Returns:
+            A numpy Histogram
+        """
         numLabels = np.arange(0, len(np.unique(cluster.labels_)) + 1)
         hist, _ = np.histogram(cluster.labels_, bins=numLabels)
         hist = hist.astype('float32')
         hist /= hist.sum()
         return hist
 
-
     def make_bar(self,height, width, color):
-    # """
-    # Create an image of a given color
-    # :param: height of the image
-    # :param: width of the image
-    # :param: BGR pixel values of the color
-    # :return: tuple of bar, rgb values, and hsv values
-    # """
+        """
+        Create an image of a given color
+
+        Args:
+            height: height of the image
+            width: width of the image
+            color: BRG pixel values of the color from cv2
+
+        Returns:
+            tuple of bar, rgb values, and hsv values
+        """
         bar = np.zeros((height, width, 3), np.uint8)
         bar[:] = color
         red, green, blue = int(color[2]), int(color[1]), int(color[0])
@@ -638,6 +730,11 @@ class Ui_MainWindow(object):
         return bar, (red, green, blue), (hue, sat, val)
 
     def openAnalyze(self):
+        """
+        Count what are the most common color in the image by creating a new image and using make_histogram and make_bar function
+        The colors will be display in the child GUI, AnalyzeColor class
+        At the same time, it will create a new Image called Common_Colors.png that will show the most common color image from GUI 
+        """
         global filePath, num_clusters
 
         if (self.numClusterInput.text()):
@@ -674,6 +771,11 @@ class Ui_MainWindow(object):
             self.window2.show()
 
     def updateValue(self):
+        """
+        When the timer is triggered, it will update the global variables along with
+        It will update the main GUI of xValue, yValue, redValue, greenValue, blueValue, redMin, redMax, greenMin, greenMax, blueMin, and blueMax
+        if the user has made a change
+        """
         global xValue, yValue, redValue, greenValue, blueValue, redMin, redMax, greenMin, greenMax, blueMin, blueMax
         self.xValueText.setNum(xValue)
         self.yValueText.setNum(yValue)
@@ -699,18 +801,32 @@ class Ui_MainWindow(object):
         self.blueMaxSlider.setSliderPosition(blueMax)
 
     def colorChangeRed(self, value):
+        """
+        When the slider position changed, it will update the global variable of redValue
+        """
         global redValue
         redValue = value
 
     def colorChangeGreen(self, value):
+        """
+        When the slider position changed, it will update the global variable of greenValue
+        """
         global greenValue
         greenValue = value
 
     def colorChangeBlue(self, value):
+        """
+        When the slider position changed, it will update the global variable of blueValue
+        """
         global blueValue
         blueValue = value
          
     def changePixel(self):
+        """ 
+        When this function is triggered, it will replace the pixel color RGB value with the user custom color from the sliders' positions
+        It will replace from (x-5) to (x+5) and (y-5) to (y+5) rather than one pixel value unless if the user select the extremes which will only replace that value
+        Then it will save a new Image called "NewImage.png" which does not effect the original copy of the image
+        """
         global xValue, yValue, redValue, greenValue, blueValue, filePath, width, height
         newImg = cv2.imread(filePath)
         interval = 10
@@ -731,30 +847,52 @@ class Ui_MainWindow(object):
         self.window.show()
         
     def redMinUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of redMin
+        """
         global redMin
         redMin = self.redMinSlider.sliderPosition()
     
     def redMaxUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of redMax
+        """
         global redMax
         redMax = self.redMaxSlider.sliderPosition()
 
     def greenMinUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of greenMin
+        """
         global greenMin
         greenMin = self.greenMinSlider.sliderPosition()
 
     def greenMaxUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of greenMax
+        """
         global greenMax
         greenMax = self.greenMaxSlider.sliderPosition()
 
     def blueMinUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of blueMin
+        """
         global blueMin
         blueMin = self.blueMinSlider.sliderPosition()
 
     def blueMaxUpdate(self):
+        """
+        When the slider position changed, it will update the global variable of blueMax
+        """
         global blueMax
         blueMax = self.blueMaxSlider.sliderPosition()
 
     def error1(self):
+        """
+        This function will be triggered if the user has not selected an image file to work with
+        It will simply give an pop up message of select an image file
+        """
         errorMessage1 = QtWidgets.QMessageBox()
         errorMessage1.setWindowTitle("Error")
         errorMessage1.setText("Please Select an Image File!")
@@ -762,6 +900,10 @@ class Ui_MainWindow(object):
         x = errorMessage1.exec_()
 
     def error2(self):
+        """
+        This function will be triggered if the color range of color detection is invalid
+        For instance, if redMin value is greater than redMax value, then this function will be triggered
+        """
         errorMessage2 = QtWidgets.QMessageBox()
         errorMessage2.setWindowTitle("Error")
         errorMessage2.setText("One or more has Invalid Color Range!")
@@ -769,6 +911,11 @@ class Ui_MainWindow(object):
         x = errorMessage2.exec_()
 
     def colorDetect(self):
+        """
+        Condition checking if everything that the user has selected it valid
+        If it failes, then it will return a warning message and automatically uncheck the checkbox
+        At the same time, if the user want to see the original image, simply unchecking the checkbox will show the original image
+        """
         global filePath, redMin, redMax, greenMin, greenMax, blueMin, blueMax, failed, width, height
         
         if ((filePath == "No_Path") and (self.executeDetect.isChecked() == True)):
@@ -797,6 +944,11 @@ class Ui_MainWindow(object):
             self.window.show()
 
     def color_detect(self):
+        """
+        Show the image color if the color is in the range that the user wants to see
+        If it is not, it will show as black
+        At the same time, it will save a new Image called "Detection.png" to see the results without running the program for future usage
+        """
         global filePath, redMin, redMax, greenMin, greenMax, blueMin, blueMax, width, height
         img = cv2.imread(filePath)
         Lower = np.array([blueMin, greenMin, redMin], dtype = "uint8")
@@ -811,10 +963,12 @@ class Ui_MainWindow(object):
         self.ui.setupUi(self.window, width, height)
         self.ui.imgLbl.setPixmap(pixmap)
         self.ui.imgLbl.setAlignment(QtCore.Qt.AlignLeft)
-        os.remove(fileName)
         self.window.show()
         
     def resetAll(self):
+        """
+        Reset all the global variables to its original state
+        """
         global filePath, xValue, yValue, redMin, redMax, greenMin, greenMax, blueMin, blueMax, redValue, greenValue, blueValue, failed, width, height, num_clusters
         filePath = "No_Path"
         xValue = 0
@@ -836,6 +990,12 @@ class Ui_MainWindow(object):
         self.numClusterInput.setText("7")
 
     def retranslateUi(self, MainWindow):
+        """
+        Replaces the name of the object when it displayes to the user
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.blueText.setText(_translate("MainWindow", "Blue"))
@@ -872,6 +1032,7 @@ class Ui_MainWindow(object):
         self.analyzeBtn.setText(_translate("MainWindow", "Analyze"))
         self.questionText.setText(_translate("MainWindow", "How many top common colors you want to find?"))
 
+# Basic functions and statements to call the Main GUI to run
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
