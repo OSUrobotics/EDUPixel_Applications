@@ -1,0 +1,15 @@
+click==7.1.2
+joblib==1.0.0
+numpy==1.19.5
+opencv-python==4.5.1.48
+PyQt5==5.15.2
+pyqt5-plugins==5.15.2.2.0.1
+PyQt5-sip==12.8.1
+pyqt5-tools==5.15.2.3.0.1
+python-dotenv==0.15.0
+qt5-applications==5.15.2.2.1
+qt5-tools==5.15.2.1.0.1
+scikit-learn==0.24.0
+scipy==1.6.0
+sklearn==0.0
+threadpoolctl==2.1.0
