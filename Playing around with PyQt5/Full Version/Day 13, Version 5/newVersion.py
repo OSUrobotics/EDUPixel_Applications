@@ -429,6 +429,9 @@ class Ui_MainWindow(object):
                 j += 1
                 path = os.path.abspath(os.getcwd())
 
+        if filePath == []:
+            self.error2()
+
         pixmap = QtGui.QPixmap(filePath[0])
         self.ogImgLbl.setPixmap(pixmap)
         self.ogImgLbl.setAlignment(QtCore.Qt.AlignLeft)
@@ -463,7 +466,7 @@ class Ui_MainWindow(object):
     def nextImage(self):
         global index, filePath
         if (index  == len(filePath) - 1):
-            self.error()
+            self.error1()
             return False
         index += 1
         pixmap = QtGui.QPixmap(filePath[index])
@@ -473,17 +476,24 @@ class Ui_MainWindow(object):
     def previousImage(self):
         global index, filePath
         if (index  == 0):
-            self.error()
+            self.error1()
             return False
         index -= 1
         pixmap = QtGui.QPixmap(filePath[index])
         self.ogImgLbl.setPixmap(pixmap)
         self.ogImgLbl.setAlignment(QtCore.Qt.AlignLeft) 
 
-    def error(self):
+    def error1(self):
+        errorMessage1 = QtWidgets.QMessageBox()
+        errorMessage1.setWindowTitle("Error")
+        errorMessage1.setText("Out of Range")
+        errorMessage1.setIcon(QtWidgets.QMessageBox.Critical)
+        x = errorMessage1.exec_()
+
+    def error2(self):
         errorMessage2 = QtWidgets.QMessageBox()
         errorMessage2.setWindowTitle("Error")
-        errorMessage2.setText("Out of Range")
+        errorMessage2.setText("Cannot Find Any Image")
         errorMessage2.setIcon(QtWidgets.QMessageBox.Critical)
         x = errorMessage2.exec_()
 
