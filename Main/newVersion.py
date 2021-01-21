@@ -522,7 +522,10 @@ class Ui_MainWindow(object):
         """
         global pictures
         new = False
-        counter = 0
+        removed = 0
+        removedPic = []
+        fileNum = 0
+        j = 0
         path = os.path.abspath(os.getcwd()) + "\OG"
         # If these folder/file do not exists, create one
         if not os.path.exists('images'):
@@ -537,19 +540,46 @@ class Ui_MainWindow(object):
             old_file.close()
 
         # Count how many images are inside the OG folder
-        for i, filename in enumerate(os.listdir(path)):
-            counter += 1
+        fileNum = len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
         
-        # If there are less than previous, then we need to do a fresh start
-        if counter < len(pictures):
-            new = True
-            pictures = []
-        
+        #TODO: There is a bug of the remove process: I don't know how to solve it
+
+        # If this was first run, then ignore the remove since there is nothing to remove
+        if new == False:
+            
+            # If the length of list is long than the number of images or same, then we know something removed or changed
+            if fileNum <= len(pictures):
+                
+                # Find each index what has changed and save it in a different list
+                for i, filename in enumerate(os.listdir(path)):
+                    print(pictures[j][0])
+                    print((path + "\\"+  filename))
+                    if pictures[j][0] != (path + "\\"+  filename):
+                        removedPic.append(i)
+                        removed += 1
+                        j += 1
+                    j += 1
+
+                # By each index we saved, remove from the back side
+                for i in range(removed):
+                    index = removedPic.pop()
+                    os.remove(pictures[index][1])
+                    del pictures[index]
+                
+                # If the list is still longer than number of images, then remove the end values of the list until it matchs the number of images
+                if fileNum < len(pictures):
+                    difference = len(pictures) - fileNum
+                    for i in range (difference):
+                        removePicList = pictures.pop()
+                        os.remove(removePicList[1])
+                        print(pictures)        
+
+
         for i, filename in enumerate(os.listdir(path)):
             # only run first cold start with no data
             if new:
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{i}.png"
+                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
                 dsize = (400,400)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -561,7 +591,7 @@ class Ui_MainWindow(object):
             # If image is added, it will add at the end or in between: this will add at the last
             elif len(pictures) <= i:
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{i}.png"
+                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
                 dsize = (400,400)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -573,7 +603,7 @@ class Ui_MainWindow(object):
             # This will add in-between the list 
             elif pictures[i][0] != os.path.join(path, filename):
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{len(pictures)}.png"
+                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
                 dsize = (400,400)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
