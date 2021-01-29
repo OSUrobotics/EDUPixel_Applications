@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
         # Global Variables Function First
         
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(771, 609)
+        MainWindow.resize(771, 525)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
