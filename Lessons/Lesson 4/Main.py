@@ -1,3 +1,31 @@
+###########################################################################################################################
+## Author: Kenneth Kang                                                                                                  ##
+## Purpose: This program is updated version that able to do with multiple pictures. While majority of the features are   ##
+## the same, but there were modifications since the last version. For the people who do not know about the previous      ##
+## version, here is the list below about its feature and where to find it.                                               ##          
+##                                                                                                                       ##
+##      1. User can select a certain max and min for RGB and see if any of the pixels is within that range for a image   ##
+##      2. User were able to modify the image by changing the RGB value for a certian location                           ##
+##      3. User can get the most top 7 common color on a certain image                                                   ##
+##      4. User can get the RGB when the user select any location on the image with its x and y value as well            ##
+##                                                                                                                       ##
+## Now here are the updates since that version. If you want old versions, you can check the previous versions            ##
+##                                                                                                                       ##
+##      1. The slider has changed from max/min to average/range to see dramatic differences                              ##
+##      2. Removed the feature of changing RGB values of the image                                                       ##
+##      3. Able to do color detect feature with multiple pictures by iterating with other images                         ##
+##      4. Reduce the complie time unless it is the first time loading(pickle package will support this feature)         ##
+##      5. Reduce the max number of common colors to 5 from 7                                                            ##
+##      6. Change the layout of the design with the updates                                                              ##
+##      7. Remove multiple GUI for each display: everything is happening within one GUI                                  ##
+##      8. Change the Top Common Color Display with Proportion and vertical shape                                        ## 
+##                                                                                                                       ##
+## Dependencies: PyQt5, Numpy, cv2, sklearn, sys, os, pickle                                                             ##
+##                                                                                                                       ##
+## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
+###########################################################################################################################
+#TODO: Need to update the blub above
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
 import numpy as np
@@ -19,7 +47,46 @@ index = 0
 
 
 class Ui_MainWindow(object):
+    """
+    This is the parent class of the two child classes for GUI
+    In other words, this is the main GUI for this program
+    """
     def setupUi(self, MainWindow):
+        """
+        Initializes the child GUI that only have a QLabel from PyQt5
+        At the same time, it also link other functions to each object
+
+        Independent Function:
+            readFile: It will read the first 9 images inside the folder of OG
+
+        Connected Functions:
+            Format: Description
+                Object Name: Function
+
+            Timer: Set a timer for every 0.01 second to trigger updateValue function
+
+            Slider: By changing the position of the slider will trigger certain function
+                redAverageSlider: redAverageUpdate function
+                redRangeSlider: redRangeUpdate function
+                greenAverageSlider: greenAverageUpdate function
+                greenRangeSlider: greenRangeUpdate function
+                blueAverageSlider: blueAverageUpdate function
+                blueRangeSlider: blueRangeUpdate function 
+                commonColorSlider: commonColorNumUpdate function
+            
+            Mouse: By clicking certain location with the mouse, it will trigger certain function
+                exImg1 and ogImg1: img1Select function
+                exImg2 and ogImg2: img2Select function
+                exImg3 and ogImg3: img3Select function
+                exImg4 and ogImg4: img4Select function
+                exImg5 and ogImg5: img5Select function
+                exImg6 and ogImg6: img6Select function
+                exImg7 and ogImg7: img7Select function
+                exImg8 and ogImg8: img8Select function
+                exImg9 and ogImg9: img9Select function
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1110, 950)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -29,6 +96,7 @@ class Ui_MainWindow(object):
         self.ogImg1.setGeometry(QtCore.QRect(20, 20, 150, 150))
         self.ogImg1.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg1.setText("")
+        self.ogImg1.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg1.setObjectName("ogImg1")
 
         self.exImg1 = QtWidgets.QLabel(self.centralwidget)
@@ -41,6 +109,7 @@ class Ui_MainWindow(object):
         self.ogImg2.setGeometry(QtCore.QRect(380, 20, 150, 150))
         self.ogImg2.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg2.setText("")
+        self.ogImg2.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg2.setObjectName("ogImg2")
 
         self.exImg2 = QtWidgets.QLabel(self.centralwidget)
@@ -53,6 +122,7 @@ class Ui_MainWindow(object):
         self.ogImg3.setGeometry(QtCore.QRect(740, 20, 150, 150))
         self.ogImg3.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg3.setText("")
+        self.ogImg3.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg3.setObjectName("ogImg3")
 
         self.exImg3 = QtWidgets.QLabel(self.centralwidget)
@@ -65,6 +135,7 @@ class Ui_MainWindow(object):
         self.ogImg4.setGeometry(QtCore.QRect(20, 220, 150, 150))
         self.ogImg4.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg4.setText("")
+        self.ogImg4.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg4.setObjectName("ogImg4")
 
         self.exImg4 = QtWidgets.QLabel(self.centralwidget)
@@ -77,6 +148,7 @@ class Ui_MainWindow(object):
         self.ogImg5.setGeometry(QtCore.QRect(380, 220, 150, 150))
         self.ogImg5.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg5.setText("")
+        self.ogImg5.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg5.setObjectName("ogImg5")
 
         self.exImg5 = QtWidgets.QLabel(self.centralwidget)
@@ -89,6 +161,7 @@ class Ui_MainWindow(object):
         self.ogImg6.setGeometry(QtCore.QRect(740, 220, 150, 150))
         self.ogImg6.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg6.setText("")
+        self.ogImg6.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg6.setObjectName("ogImg6")
 
         self.exImg6 = QtWidgets.QLabel(self.centralwidget)
@@ -101,12 +174,14 @@ class Ui_MainWindow(object):
         self.ogImg9.setGeometry(QtCore.QRect(740, 420, 150, 150))
         self.ogImg9.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg9.setText("")
+        self.ogImg9.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg9.setObjectName("ogImg9")
 
         self.ogImg8 = QtWidgets.QLabel(self.centralwidget)
         self.ogImg8.setGeometry(QtCore.QRect(380, 420, 150, 150))
         self.ogImg8.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg8.setText("")
+        self.ogImg8.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg8.setObjectName("ogImg8")
 
         self.exImg9 = QtWidgets.QLabel(self.centralwidget)
@@ -119,6 +194,7 @@ class Ui_MainWindow(object):
         self.ogImg7.setGeometry(QtCore.QRect(20, 420, 150, 150))
         self.ogImg7.setFrameShape(QtWidgets.QFrame.Box)
         self.ogImg7.setText("")
+        self.ogImg7.setCursor(QtCore.Qt.PointingHandCursor)
         self.ogImg7.setObjectName("ogImg7")
 
         self.exImg7 = QtWidgets.QLabel(self.centralwidget)
@@ -645,38 +721,65 @@ class Ui_MainWindow(object):
         return bar
 
     def img1Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 0
 
     def img2Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 1
 
     def img3Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 2
 
     def img4Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 3
 
     def img5Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 4
 
     def img6Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 5
 
     def img7Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 6
 
     def img8Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 7
 
     def img9Select(self, event):
+        """
+        This function will update the value of index when the function is triggered
+        """
         global index
         index = 8
 
@@ -804,6 +907,12 @@ class Ui_MainWindow(object):
 
 
     def retranslateUi(self, MainWindow):
+        """
+        Replaces the name of the object when it displayes to the user
+
+        Args:
+            MainWindow: The whole GUI that contains the Widget
+        """
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.redAverageText.setText(_translate("MainWindow", "Red Average"))
@@ -814,7 +923,7 @@ class Ui_MainWindow(object):
         self.blueAverageText.setText(_translate("MainWindow", "Blue Average"))
         self.author.setText(_translate("MainWindow", "By Kenneth Kang"))
 
-
+# Basic functions and statements to call the Main GUI to run
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

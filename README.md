@@ -1,8 +1,37 @@
-Day 15 is the final look: Just need to do documentation then we are complete 
-In order to use this program, first install Python3: https://www.python.org
-Once that is complete, open CMD for windows or Command Terminal for Mac and type the following 
-pip install -r requirements.txt
-Then you will be able to run all of the programs
-Use 3.8.x, not 3.9.x or higher
+# Computer Vision Education Software
 
-TODO: Need to update this Read me file
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Objectives](#objectives)
+- [Installing Environment](#installing-environment)
+
+## Introduction
+
+The purpose of this repository to make the public understand the limitation of computer vision.
+In order to achieve this goal, I have designed four unique lessons with its video tutorial of using the code so that the user can fully understand each purpose of the program for each lesson.
+At the same time, this research was under [Undergraduate Research, Scholarship and the Arts](https://undergraduate.oregonstate.edu/research/programs/ursa-engage) (URSA Engage) at Oregon State University with [Professor Cindy Grimm](https://mime.oregonstate.edu/people/grimm) and [Professor Bill Smart](https://mime.oregonstate.edu/people/smart). You can also find related Computer Vision materials [here](google.com) that contains this repository and other unique programs that make the user easily understand the limitation of Computer Vision.
+
+TODO: Need the updated URL for this program and such: currently it leads to google.com when the user click "here" in the introduction
+
+If you want to run this program by yourself, I would recommend to follow the instructions in the [Installing Environment](#installing-environment) section so that you would not get any conflicts with these code.
+
+## Objectives
+
+- Educate the basic concept of RGB values and Pixels
+
+- Educate Computer Vision the public with layman terms
+
+- Simple enough for K-12 students and non-technical users to understand the concept
+
+- Change the public view point of Computer Vision
+
+## Installing Environment
+
+1. Install Python 3 that can be found [here](https://www.python.org).
+
+2. Open CMD or Command Terminal and type the followin code:
+```pip install -r requirments.txt```
+
+3. Go to the Lessons Folder and follow each lesson to learn and run the code upon it.

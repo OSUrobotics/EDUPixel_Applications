@@ -24,6 +24,7 @@
 ##                                                                                                                       ##
 ## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
 ###########################################################################################################################
+#TODO: Need to update the blub above
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
@@ -91,6 +92,7 @@ class Ui_MainWindow(object):
         self.ogImgLbl = QtWidgets.QLabel(self.centralwidget)
         self.ogImgLbl.setGeometry(QtCore.QRect(20, 90, 400, 400))
         self.ogImgLbl.setFrameShape(QtWidgets.QFrame.Box)
+        self.ogImgLbl.setCursor(QtCore.Qt.CrossCursor)
         self.ogImgLbl.setText("")
         self.ogImgLbl.setObjectName("ogImgLbl")
 
@@ -448,7 +450,8 @@ class Ui_MainWindow(object):
         self.commonColorSlider.setGeometry(QtCore.QRect(1220, 460, 50, 160))
         self.commonColorSlider.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.commonColorSlider.setMaximum(5)
-        self.commonColorSlider.setSliderPosition(0)
+        self.commonColorSlider.setMinimum(1)
+        self.commonColorSlider.setSliderPosition(1)
         self.commonColorSlider.setOrientation(QtCore.Qt.Vertical)
         self.commonColorSlider.setInvertedAppearance(False)
         self.commonColorSlider.setInvertedControls(False)
