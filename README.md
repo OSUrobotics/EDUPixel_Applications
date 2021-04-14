@@ -31,7 +31,7 @@ If you want to run this program by yourself, I would recommend to follow the ins
 
 1. Install Python 3 that can be found [here](https://www.python.org).
 
-2. Download this resposity as a .zip file.
+2. Download this resposity as a .zip file and unzip the folder where you can easily access to it.
 
 3. Open CMD or Command Terminal that the path is where the repository is located and type the following commend:
 ```pip install -r requirments.txt```
