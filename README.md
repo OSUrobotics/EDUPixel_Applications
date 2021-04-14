@@ -36,4 +36,4 @@ If you want to run this program by yourself, I would recommend to follow the ins
 3. Open CMD or Command Terminal that the path is where the repository is located and type the following commend:
 ```pip install -r requirments.txt```
 
-4. Go to the Lessons Folder and follow each lesson to learn and run the code upon it.
+4. Go to the Lessons Folder and follow each lesson to learn and run the code upon it: only run ```.py``` files, not other files.
