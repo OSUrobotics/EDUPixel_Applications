@@ -11,7 +11,7 @@
 
 The purpose of this repository to make the public understand the limitation of computer vision.
 In order to achieve this goal, I have designed four unique lessons with its video tutorial of using the code so that the user can fully understand each purpose of the program for each lesson.
-At the same time, this research was under [Undergraduate Research, Scholarship and the Arts](https://undergraduate.oregonstate.edu/research/programs/ursa-engage) (URSA Engage) at Oregon State University with [Professor Cindy Grimm](https://mime.oregonstate.edu/people/grimm) and [Professor Bill Smart](https://mime.oregonstate.edu/people/smart). You can also find related Computer Vision materials [here](google.com) that contains this repository and other unique programs that make the user easily understand the limitation of Computer Vision.
+At the same time, this research was under [Undergraduate Research, Scholarship and the Arts](https://undergraduate.oregonstate.edu/research/programs/ursa-engage) (URSA Engage) at Oregon State University with [Professor Cindy Grimm](https://mime.oregonstate.edu/people/grimm) and [Professor Bill Smart](https://mime.oregonstate.edu/people/smart). You can also find related Computer Vision materials [here](https://sites.google.com/view/edupixel/home) that contains this repository and other unique programs that make the user easily understand the limitation of Computer Vision.
 
 TODO: Need the updated URL for this program and such: currently it leads to google.com when the user click "here" in the introduction
 

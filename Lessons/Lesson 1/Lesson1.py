@@ -1,5 +1,17 @@
-#TODO: Need to update the blub
-
+###########################################################################################################################
+## Author: Kenneth Kang                                                                                                  ##
+## Purpose: This program will tell how color is generated in the computer.                                               ##                                                                          ##
+##                                                                                                                       ##
+##      1. The user can change the color by controlling the RGB slider values.                                           ##
+##      2. The user can see the change color as they control the RGB sliders on the right side of the sliders.           ##
+##                                                                                                                       ##
+## The full explaination of the course lecture can be found the following link                                           ##
+## https://sites.google.com/view/edupixel/home                                                                           ##
+##                                                                                                                       ##
+## Dependencies: PyQt5                                                                                                   ##
+##                                                                                                                       ##
+## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
+###########################################################################################################################
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -135,7 +147,7 @@ class Ui_MainWindow(object):
             MainWindow: The whole GUI that contains the Widget
         """
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Lesson 1"))
         self.redText.setText(_translate("MainWindow", "Red"))
         self.greenText.setText(_translate("MainWindow", "Green"))
         self.blueText.setText(_translate("MainWindow", "Blue"))

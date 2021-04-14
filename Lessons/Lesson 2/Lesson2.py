@@ -1,6 +1,19 @@
-#TODO: Need to update the blub
-
-
+###########################################################################################################################
+## Author: Kenneth Kang                                                                                                  ##
+## Purpose: This program will do the following task below.                                                               ##
+##                                                                                                                       ##
+##      1. The user can select any pictures in their machine to play around with.                                        ##
+##      2. The user can select any location/pixel on the image and see the RGB, x location, and y location values.       ##
+##      3. The user can modify the color by moving the slider of RGB and selcting Change Color.                          ##
+##          -- The modified photo will be saved in the folder where this code is located as NewImage.png                 ##
+##                                                                                                                       ##
+## The full explaination of the course lecture can be found the following link                                           ##
+## https://sites.google.com/view/edupixel/home                                                                           ##
+##                                                                                                                       ##
+## Dependencies: PyQt5, cv2                                                                                              ##
+##                                                                                                                       ##
+## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
+###########################################################################################################################
 from PyQt5 import QtCore, QtGui, QtWidgets
 import cv2
 
@@ -237,7 +250,7 @@ class Ui_MainWindow(object):
             MainWindow: The whole GUI that contains the Widget
         """
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Lesson 2"))
         self.redText.setText(_translate("MainWindow", "Red"))
         self.imgSelectBtn.setText(_translate("MainWindow", "Select Image"))
         self.changeColorBtn.setText(_translate("MainWindow", "Change Color"))

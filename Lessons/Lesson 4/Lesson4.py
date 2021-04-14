@@ -1,30 +1,22 @@
 ###########################################################################################################################
 ## Author: Kenneth Kang                                                                                                  ##
-## Purpose: This program is updated version that able to do with multiple pictures. While majority of the features are   ##
-## the same, but there were modifications since the last version. For the people who do not know about the previous      ##
-## version, here is the list below about its feature and where to find it.                                               ##          
+## Purpose: This program will be an updated version/modifed version from the previous lesson code with update list below ##
 ##                                                                                                                       ##
-##      1. User can select a certain max and min for RGB and see if any of the pixels is within that range for a image   ##
-##      2. User were able to modify the image by changing the RGB value for a certian location                           ##
-##      3. User can get the most top 7 common color on a certain image                                                   ##
-##      4. User can get the RGB when the user select any location on the image with its x and y value as well            ##
+##      1. The user can see all the image without iterating each image                                                   ##
+##      2. The user can change the range of RGB average and range value to be detected in the other image box.           ##
+##          for all the images.                                                                                          ##
+##          -- The skyblue background box indicates what the computer will see as                                        ##
 ##                                                                                                                       ##
-## Now here are the updates since that version. If you want old versions, you can check the previous versions            ##
+## The full explaination of the course lecture can be found the following link                                           ##
+## https://sites.google.com/view/edupixel/home                                                                           ##
 ##                                                                                                                       ##
-##      1. The slider has changed from max/min to average/range to see dramatic differences                              ##
-##      2. Removed the feature of changing RGB values of the image                                                       ##
-##      3. Able to do color detect feature with multiple pictures by iterating with other images                         ##
-##      4. Reduce the complie time unless it is the first time loading(pickle package will support this feature)         ##
-##      5. Reduce the max number of common colors to 5 from 7                                                            ##
-##      6. Change the layout of the design with the updates                                                              ##
-##      7. Remove multiple GUI for each display: everything is happening within one GUI                                  ##
-##      8. Change the Top Common Color Display with Proportion and vertical shape                                        ## 
+## If you want to add your own images, then remove all images from the OG and images folder,                             ##
+## and add images only inside the OG folder.                                                                             ##
 ##                                                                                                                       ##
-## Dependencies: PyQt5, Numpy, cv2, sklearn, sys, os, pickle                                                             ##
+## Dependencies: PyQt5, cv2, numpy, sklearn, pickle                                                                      ##
 ##                                                                                                                       ##
 ## Other software Usage: Designer.exe for PyQt5(That can be found in .ui file)                                           ##
 ###########################################################################################################################
-#TODO: Need to update the blub above
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
@@ -914,7 +906,7 @@ class Ui_MainWindow(object):
             MainWindow: The whole GUI that contains the Widget
         """
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Lesson 4"))
         self.redAverageText.setText(_translate("MainWindow", "Red Average"))
         self.redRangeText.setText(_translate("MainWindow", "Red Range"))
         self.greenAverageText.setText(_translate("MainWindow", "Green Average"))
