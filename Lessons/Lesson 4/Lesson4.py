@@ -410,14 +410,6 @@ class Ui_MainWindow(object):
         self.blueAverageText.setAlignment(QtCore.Qt.AlignCenter)
         self.blueAverageText.setObjectName("blueAverageText")
 
-        self.author = QtWidgets.QLabel(self.centralwidget)
-        self.author.setGeometry(QtCore.QRect(1000, 920, 101, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(10)
-        self.author.setFont(font)
-        self.author.setObjectName("author")
-
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -913,7 +905,6 @@ class Ui_MainWindow(object):
         self.greenRangeText.setText(_translate("MainWindow", "Green Range"))
         self.blueRangeText.setText(_translate("MainWindow", "Blue Range"))
         self.blueAverageText.setText(_translate("MainWindow", "Blue Average"))
-        self.author.setText(_translate("MainWindow", "By Kenneth Kang"))
 
 # Basic functions and statements to call the Main GUI to run
 if __name__ == "__main__":

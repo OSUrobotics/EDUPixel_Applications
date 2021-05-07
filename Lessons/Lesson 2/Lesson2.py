@@ -259,7 +259,6 @@ class Ui_MainWindow(object):
         self.greenText.setText(_translate("MainWindow", "Green"))
         self.blueText.setText(_translate("MainWindow", "Blue"))
         self.colorPreviewText.setText(_translate("MainWindow", "Color Preview"))
-        self.authorText.setText(_translate("MainWindow", "By Kenneth Kang"))
 
     def update(self):
         """
