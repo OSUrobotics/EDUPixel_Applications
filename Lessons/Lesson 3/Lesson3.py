@@ -3,9 +3,8 @@
 ## Purpose: This program will do the following task below.                                                               ##
 ##                                                                                                                       ##
 ##      1. The user iterate images that are saved inside the folder                                                      ##
-##      2. The user can select any location/pixel on the image and see the RGB, x location, and y location values.       ##
-##      3. The user can see the top 1 ~ 5 common colors in the certain image.                                            ##
-##      4. The user can change the range of RGB average and range value to be detected in the other image box.           ##
+##      2. The user can see the top 1 ~ 5 common colors in the certain image.                                            ##
+##      3. The user can change the range of RGB average and range value to be detected in the other image box.           ##
 ##          -- The skyblue background box indicates what the computer will see as                                        ##
 ##                                                                                                                       ##
 ## The full explaination of the course lecture can be found the following link                                           ##
@@ -70,7 +69,6 @@ class Ui_MainWindow(object):
                 blueRangeSlider: blueRangeUpdate function 
             
             Mouse: By clicking certain location with the mouse, it will trigger certain function
-                ogImgLbl event: captureIt function
                 commonColorLbl event: captureCommon function
         Args:
             MainWindow: The whole GUI that contains the Widget
