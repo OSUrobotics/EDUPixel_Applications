@@ -38,8 +38,6 @@ blueRange = 15
 redValue = 0
 greenValue = 0
 blueValue = 0
-xValue = 0
-yValue = 0
 num = 1
 
 
@@ -78,33 +76,32 @@ class Ui_MainWindow(object):
             MainWindow: The whole GUI that contains the Widget
         """
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1300, 975)
+        MainWindow.resize(1047, 700)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
         self.ogImgLbl = QtWidgets.QLabel(self.centralwidget)
-        self.ogImgLbl.setGeometry(QtCore.QRect(20, 30, 400, 400))
+        self.ogImgLbl.setGeometry(QtCore.QRect(20, 30, 300, 300))
         self.ogImgLbl.setFrameShape(QtWidgets.QFrame.Box)
-        self.ogImgLbl.setCursor(QtCore.Qt.CrossCursor)
         self.ogImgLbl.setText("")
         self.ogImgLbl.setObjectName("ogImgLbl")
 
         self.executeImgLbl = QtWidgets.QLabel(self.centralwidget)
-        self.executeImgLbl.setGeometry(QtCore.QRect(20, 460, 400, 400))
+        self.executeImgLbl.setGeometry(QtCore.QRect(20, 390, 300, 300))
         self.executeImgLbl.setFrameShape(QtWidgets.QFrame.Box)
         self.executeImgLbl.setText("")
         self.executeImgLbl.setObjectName("executeImgLbl")
 
         self.nextBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.nextBtn.setGeometry(QtCore.QRect(260, 435, 75, 20))
+        self.nextBtn.setGeometry(QtCore.QRect(220, 350, 75, 20))
         self.nextBtn.setObjectName("nextBtn")
 
         self.previousBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.previousBtn.setGeometry(QtCore.QRect(90, 435, 75, 20))
+        self.previousBtn.setGeometry(QtCore.QRect(40, 350, 75, 20))
         self.previousBtn.setObjectName("previousBtn")
 
         self.greenAverageText = QtWidgets.QLabel(self.centralwidget)
-        self.greenAverageText.setGeometry(QtCore.QRect(620, 300, 120, 20))
+        self.greenAverageText.setGeometry(QtCore.QRect(460, 290, 120, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -116,18 +113,18 @@ class Ui_MainWindow(object):
         self.greenAverageText.setObjectName("greenAverageText")
 
         self.redRangeValue = QtWidgets.QLabel(self.centralwidget)
-        self.redRangeValue.setGeometry(QtCore.QRect(860, 200, 50, 20))
+        self.redRangeValue.setGeometry(QtCore.QRect(670, 190, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.redRangeValue.setFont(font)
         self.redRangeValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.redRangeValue.setText("")
+        self.redRangeValue.setNum(15)
         self.redRangeValue.setAlignment(QtCore.Qt.AlignCenter)
         self.redRangeValue.setObjectName("redRangeValue")
 
         self.greenRangeText = QtWidgets.QLabel(self.centralwidget)
-        self.greenRangeText.setGeometry(QtCore.QRect(630, 380, 100, 20))
+        self.greenRangeText.setGeometry(QtCore.QRect(470, 380, 100, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -139,14 +136,14 @@ class Ui_MainWindow(object):
         self.greenRangeText.setObjectName("greenRangeText")
 
         self.greenAverageSlider = QtWidgets.QSlider(self.centralwidget)
-        self.greenAverageSlider.setGeometry(QtCore.QRect(490, 330, 351, 22))
+        self.greenAverageSlider.setGeometry(QtCore.QRect(390, 320, 255, 22))
         self.greenAverageSlider.setMaximum(255)
         self.greenAverageSlider.setProperty("value", 128)
         self.greenAverageSlider.setOrientation(QtCore.Qt.Horizontal)
         self.greenAverageSlider.setObjectName("greenAverageSlider")
 
         self.greenRangeSlider = QtWidgets.QSlider(self.centralwidget)
-        self.greenRangeSlider.setGeometry(QtCore.QRect(490, 412, 351, 20))
+        self.greenRangeSlider.setGeometry(QtCore.QRect(390, 402, 255, 20))
         self.greenRangeSlider.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.greenRangeSlider.setMaximum(127)
         self.greenRangeSlider.setProperty("value", 0)
@@ -155,7 +152,7 @@ class Ui_MainWindow(object):
         self.greenRangeSlider.setObjectName("greenRangeSlider")
 
         self.blueAverageText = QtWidgets.QLabel(self.centralwidget)
-        self.blueAverageText.setGeometry(QtCore.QRect(630, 510, 100, 20))
+        self.blueAverageText.setGeometry(QtCore.QRect(470, 510, 100, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -165,39 +162,39 @@ class Ui_MainWindow(object):
         self.blueAverageText.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.blueAverageText.setAlignment(QtCore.Qt.AlignCenter)
         self.blueAverageText.setObjectName("blueAverageText")
-        
+
         self.redRangeSlider = QtWidgets.QSlider(self.centralwidget)
-        self.redRangeSlider.setGeometry(QtCore.QRect(490, 200, 351, 22))
+        self.redRangeSlider.setGeometry(QtCore.QRect(390, 190, 255, 22))
         self.redRangeSlider.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.redRangeSlider.setMaximum(127)
         self.redRangeSlider.setProperty("value", 0)
-        self.redRangeSlider.setSliderPosition(0)
+        self.redRangeSlider.setSliderPosition(15)
         self.redRangeSlider.setOrientation(QtCore.Qt.Horizontal)
         self.redRangeSlider.setObjectName("redRangeSlider")
 
         self.blueRangeSlider = QtWidgets.QSlider(self.centralwidget)
-        self.blueRangeSlider.setGeometry(QtCore.QRect(490, 630, 351, 22))
+        self.blueRangeSlider.setGeometry(QtCore.QRect(390, 620, 255, 22))
         self.blueRangeSlider.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.blueRangeSlider.setMaximum(127)
-        self.blueRangeSlider.setSliderPosition(0)
+        self.blueRangeSlider.setSliderPosition(15)
         self.blueRangeSlider.setOrientation(QtCore.Qt.Horizontal)
         self.blueRangeSlider.setObjectName("blueRangeSlider")
 
         self.blueAverageSlider = QtWidgets.QSlider(self.centralwidget)
-        self.blueAverageSlider.setGeometry(QtCore.QRect(490, 550, 351, 22))
+        self.blueAverageSlider.setGeometry(QtCore.QRect(390, 540, 255, 22))
         self.blueAverageSlider.setMaximum(255)
         self.blueAverageSlider.setProperty("value", 128)
         self.blueAverageSlider.setOrientation(QtCore.Qt.Horizontal)
         self.blueAverageSlider.setObjectName("blueAverageSlider")
 
         self.borderLineWithGB = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithGB.setGeometry(QtCore.QRect(440, 480, 511, 20))
+        self.borderLineWithGB.setGeometry(QtCore.QRect(340, 470, 391, 20))
         self.borderLineWithGB.setFrameShadow(QtWidgets.QFrame.Plain)
         self.borderLineWithGB.setFrameShape(QtWidgets.QFrame.HLine)
         self.borderLineWithGB.setObjectName("borderLineWithGB")
 
         self.blueRangeText = QtWidgets.QLabel(self.centralwidget)
-        self.blueRangeText.setGeometry(QtCore.QRect(630, 590, 100, 20))
+        self.blueRangeText.setGeometry(QtCore.QRect(470, 590, 100, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -209,7 +206,7 @@ class Ui_MainWindow(object):
         self.blueRangeText.setObjectName("blueRangeText")
 
         self.redRangeText = QtWidgets.QLabel(self.centralwidget)
-        self.redRangeText.setGeometry(QtCore.QRect(630, 160, 100, 20))
+        self.redRangeText.setGeometry(QtCore.QRect(470, 170, 100, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -221,36 +218,36 @@ class Ui_MainWindow(object):
         self.redRangeText.setObjectName("redRangeText")
 
         self.redAverageSlider = QtWidgets.QSlider(self.centralwidget)
-        self.redAverageSlider.setGeometry(QtCore.QRect(490, 120, 351, 22))
+        self.redAverageSlider.setGeometry(QtCore.QRect(390, 110, 255, 22))
         self.redAverageSlider.setMaximum(255)
         self.redAverageSlider.setSliderPosition(128)
         self.redAverageSlider.setOrientation(QtCore.Qt.Horizontal)
         self.redAverageSlider.setObjectName("redAverageSlider")
 
         self.blueAverageValue = QtWidgets.QLabel(self.centralwidget)
-        self.blueAverageValue.setGeometry(QtCore.QRect(860, 550, 50, 20))
+        self.blueAverageValue.setGeometry(QtCore.QRect(670, 540, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.blueAverageValue.setFont(font)
         self.blueAverageValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.blueAverageValue.setText("")
+        self.blueAverageValue.setNum(128)
         self.blueAverageValue.setAlignment(QtCore.Qt.AlignCenter)
         self.blueAverageValue.setObjectName("blueAverageValue")
 
         self.blueRangeValue = QtWidgets.QLabel(self.centralwidget)
-        self.blueRangeValue.setGeometry(QtCore.QRect(860, 630, 50, 20))
+        self.blueRangeValue.setGeometry(QtCore.QRect(670, 620, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.blueRangeValue.setFont(font)
         self.blueRangeValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.blueRangeValue.setText("")
+        self.blueRangeValue.setNum(15)
         self.blueRangeValue.setAlignment(QtCore.Qt.AlignCenter)
         self.blueRangeValue.setObjectName("blueRangeValue")
 
         self.redAverageText = QtWidgets.QLabel(self.centralwidget)
-        self.redAverageText.setGeometry(QtCore.QRect(630, 90, 100, 20))
+        self.redAverageText.setGeometry(QtCore.QRect(470, 80, 100, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -262,18 +259,18 @@ class Ui_MainWindow(object):
         self.redAverageText.setObjectName("redAverageText")
 
         self.redAverageValue = QtWidgets.QLabel(self.centralwidget)
-        self.redAverageValue.setGeometry(QtCore.QRect(860, 120, 50, 20))
+        self.redAverageValue.setGeometry(QtCore.QRect(670, 110, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.redAverageValue.setFont(font)
         self.redAverageValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.redAverageValue.setText("")
+        self.redAverageValue.setNum(128)
         self.redAverageValue.setAlignment(QtCore.Qt.AlignCenter)
         self.redAverageValue.setObjectName("redAverageValue")
 
         self.colorRangeText = QtWidgets.QLabel(self.centralwidget)
-        self.colorRangeText.setGeometry(QtCore.QRect(580, 50, 211, 21))
+        self.colorRangeText.setGeometry(QtCore.QRect(410, 40, 211, 21))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
@@ -285,162 +282,40 @@ class Ui_MainWindow(object):
         self.colorRangeText.setObjectName("colorRangeText")
 
         self.greenAverageValue = QtWidgets.QLabel(self.centralwidget)
-        self.greenAverageValue.setGeometry(QtCore.QRect(860, 330, 50, 20))
+        self.greenAverageValue.setGeometry(QtCore.QRect(670, 320, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.greenAverageValue.setFont(font)
         self.greenAverageValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.greenAverageValue.setText("")
+        self.greenAverageValue.setNum(128)
         self.greenAverageValue.setAlignment(QtCore.Qt.AlignCenter)
         self.greenAverageValue.setObjectName("greenAverageValue")
 
         self.borderLineWithRG = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithRG.setGeometry(QtCore.QRect(440, 260, 511, 20))
+        self.borderLineWithRG.setGeometry(QtCore.QRect(340, 260, 371, 20))
         self.borderLineWithRG.setFrameShadow(QtWidgets.QFrame.Plain)
         self.borderLineWithRG.setFrameShape(QtWidgets.QFrame.HLine)
         self.borderLineWithRG.setObjectName("borderLineWithRG")
 
         self.greenRangeValue = QtWidgets.QLabel(self.centralwidget)
-        self.greenRangeValue.setGeometry(QtCore.QRect(860, 410, 50, 20))
+        self.greenRangeValue.setGeometry(QtCore.QRect(670, 400, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.greenRangeValue.setFont(font)
         self.greenRangeValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.greenRangeValue.setText("")
+        self.greenRangeValue.setNum(15)
         self.greenRangeValue.setAlignment(QtCore.Qt.AlignCenter)
         self.greenRangeValue.setObjectName("greenRangeValue")
 
-        self.borderLineWithGB_2 = QtWidgets.QFrame(self.centralwidget)
-        self.borderLineWithGB_2.setGeometry(QtCore.QRect(440, 690, 511, 20))
-        self.borderLineWithGB_2.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.borderLineWithGB_2.setFrameShape(QtWidgets.QFrame.HLine)
-        self.borderLineWithGB_2.setObjectName("borderLineWithGB_2")
-
-        self.yText = QtWidgets.QLabel(self.centralwidget)
-        self.yText.setGeometry(QtCore.QRect(680, 710, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.yText.setFont(font)
-        self.yText.setAlignment(QtCore.Qt.AlignCenter)
-        self.yText.setObjectName("yText")
-
-        self.xText = QtWidgets.QLabel(self.centralwidget)
-        self.xText.setGeometry(QtCore.QRect(570, 710, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.xText.setFont(font)
-        self.xText.setAlignment(QtCore.Qt.AlignCenter)
-        self.xText.setObjectName("xText")
-
-        self.xValueText = QtWidgets.QLabel(self.centralwidget)
-        self.xValueText.setGeometry(QtCore.QRect(570, 750, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.xValueText.setFont(font)
-        self.xValueText.setFrameShape(QtWidgets.QFrame.Box)
-        self.xValueText.setText("")
-        self.xValueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.xValueText.setObjectName("xValueText")
-
-        self.colorPreviewText = QtWidgets.QLabel(self.centralwidget)
-        self.colorPreviewText.setGeometry(QtCore.QRect(790, 760, 130, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.colorPreviewText.setFont(font)
-        self.colorPreviewText.setAlignment(QtCore.Qt.AlignCenter)
-        self.colorPreviewText.setObjectName("colorPreviewText")
-
-        self.colorPreview = QtWidgets.QLabel(self.centralwidget)
-        self.colorPreview.setGeometry(QtCore.QRect(790, 800, 130, 50))
-        self.colorPreview.setFrameShape(QtWidgets.QFrame.Box)
-        self.colorPreview.setText("")
-        self.colorPreview.setAlignment(QtCore.Qt.AlignCenter)
-        self.colorPreview.setObjectName("colorPreview")
-
-        self.yValueText = QtWidgets.QLabel(self.centralwidget)
-        self.yValueText.setGeometry(QtCore.QRect(680, 750, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.yValueText.setFont(font)
-        self.yValueText.setFrameShape(QtWidgets.QFrame.Box)
-        self.yValueText.setText("")
-        self.yValueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.yValueText.setObjectName("yValueText")
-
-        self.redValueText = QtWidgets.QLabel(self.centralwidget)
-        self.redValueText.setGeometry(QtCore.QRect(460, 830, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.redValueText.setFont(font)
-        self.redValueText.setFrameShape(QtWidgets.QFrame.Box)
-        self.redValueText.setText("")
-        self.redValueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.redValueText.setObjectName("redValueText")
-
-        self.greenValueText = QtWidgets.QLabel(self.centralwidget)
-        self.greenValueText.setGeometry(QtCore.QRect(570, 830, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.greenValueText.setFont(font)
-        self.greenValueText.setFrameShape(QtWidgets.QFrame.Box)
-        self.greenValueText.setText("")
-        self.greenValueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.greenValueText.setObjectName("greenValueText")
-
-        self.blueValueText = QtWidgets.QLabel(self.centralwidget)
-        self.blueValueText.setGeometry(QtCore.QRect(680, 830, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.blueValueText.setFont(font)
-        self.blueValueText.setFrameShape(QtWidgets.QFrame.Box)
-        self.blueValueText.setText("")
-        self.blueValueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.blueValueText.setObjectName("blueValueText")
-
-        self.redText = QtWidgets.QLabel(self.centralwidget)
-        self.redText.setGeometry(QtCore.QRect(460, 810, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.redText.setFont(font)
-        self.redText.setAlignment(QtCore.Qt.AlignCenter)
-        self.redText.setObjectName("redText")
-
-        self.greenText = QtWidgets.QLabel(self.centralwidget)
-        self.greenText.setGeometry(QtCore.QRect(570, 810, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.greenText.setFont(font)
-        self.greenText.setAlignment(QtCore.Qt.AlignCenter)
-        self.greenText.setObjectName("greenText")
-
-        self.blueText = QtWidgets.QLabel(self.centralwidget)
-        self.blueText.setGeometry(QtCore.QRect(680, 810, 50, 20))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(14)
-        self.blueText.setFont(font)
-        self.blueText.setAlignment(QtCore.Qt.AlignCenter)
-        self.blueText.setObjectName("blueText")
-
         self.commonColorLbl = QtWidgets.QLabel(self.centralwidget)
-        self.commonColorLbl.setGeometry(QtCore.QRect(980, 60, 200, 800))
+        self.commonColorLbl.setGeometry(QtCore.QRect(750, 30, 200, 650))
         self.commonColorLbl.setFrameShape(QtWidgets.QFrame.Box)
         self.commonColorLbl.setObjectName("commonColorLbl")
 
         self.commonColorSlider = QtWidgets.QSlider(self.centralwidget)
-        self.commonColorSlider.setGeometry(QtCore.QRect(1220, 400, 50, 160))
+        self.commonColorSlider.setGeometry(QtCore.QRect(980, 340, 50, 160))
         self.commonColorSlider.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.commonColorSlider.setMaximum(5)
         self.commonColorSlider.setMinimum(1)
@@ -451,16 +326,16 @@ class Ui_MainWindow(object):
         self.commonColorSlider.setObjectName("commonColorSlider")
 
         self.commonColorValue = QtWidgets.QLabel(self.centralwidget)
-        self.commonColorValue.setGeometry(QtCore.QRect(1220, 360, 50, 20))
+        self.commonColorValue.setGeometry(QtCore.QRect(980, 300, 50, 20))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(14)
         self.commonColorValue.setFont(font)
         self.commonColorValue.setFrameShape(QtWidgets.QFrame.Box)
-        self.commonColorValue.setText("")
+        self.commonColorValue.setNum(0)
         self.commonColorValue.setAlignment(QtCore.Qt.AlignCenter)
         self.commonColorValue.setObjectName("commonColorValue")
-        
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -479,7 +354,6 @@ class Ui_MainWindow(object):
         self.previousBtn.clicked.connect(self.previousImage)
 
         # Mouse
-        self.ogImgLbl.mousePressEvent = self.captureIt
         self.commonColorLbl.mousePressEvent = self.captureCommon
 
         # Slider
@@ -495,7 +369,7 @@ class Ui_MainWindow(object):
         """ 
         Before the whole GUI is launch, this function will be triggered. 
         This will read every single image file that is contained inside the OG folder. 
-        Then save it with the size of 400 width and 400 height inside the image folder. 
+        Then save it with the size of 300 width and 300 height inside the image folder. 
         After that, it will calculate common top 5 colors and proportion. 
         Throughout the function, all the data will be saved inside pictures global variable. 
         Once everydata is complete, it will be saved into pickle file so that reduce the complie time for next run. 
@@ -562,7 +436,7 @@ class Ui_MainWindow(object):
             if new:
                 img = cv2.imread(os.path.join(path, filename))
                 imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
-                dsize = (400,400)
+                dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
                 pictures.append([])
@@ -574,7 +448,7 @@ class Ui_MainWindow(object):
             elif len(pictures) <= i:
                 img = cv2.imread(os.path.join(path, filename))
                 imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
-                dsize = (400,400)
+                dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
                 pictures.append([])
@@ -586,7 +460,7 @@ class Ui_MainWindow(object):
             elif pictures[i][0] != os.path.join(path, filename):
                 img = cv2.imread(os.path.join(path, filename))
                 imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
-                dsize = (400,400)
+                dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
                 pictures.insert(i, [])
@@ -656,7 +530,7 @@ class Ui_MainWindow(object):
         Returns:
             tuple of bar, rgb values, and hsv values
         """
-        bar = np.zeros((160, 200, 3), np.uint8)
+        bar = np.zeros((130, 200, 3), np.uint8)
         bar[:] = [color[2], color[1], color[0]]
         return bar
 
@@ -792,7 +666,7 @@ class Ui_MainWindow(object):
             showCommonColor()
         """
         
-        global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange, redValue, greenValue, blueValue, xValue, yValue, num
+        global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange, redValue, greenValue, blueValue, num
 
         # Update the Text Value
         self.redAverageValue.setNum(redAverage)
@@ -801,11 +675,6 @@ class Ui_MainWindow(object):
         self.greenRangeValue.setNum(greenRange)
         self.blueAverageValue.setNum(blueAverage)
         self.blueRangeValue.setNum(blueRange)
-        self.xValueText.setNum(xValue)
-        self.yValueText.setNum(yValue)
-        self.redValueText.setNum(redValue)
-        self.greenValueText.setNum(greenValue)
-        self.blueValueText.setNum(blueValue)
         self.commonColorValue.setNum(num)
 
         # Update the Slider Position
@@ -815,10 +684,6 @@ class Ui_MainWindow(object):
         self.greenRangeSlider.setSliderPosition(greenRange)
         self.blueAverageSlider.setSliderPosition(blueAverage)
         self.blueRangeSlider.setSliderPosition(blueRange)
-
-        # Update the Preview Color 
-        hexColor = '#'+'%02x%02x%02x' % (redValue, greenValue, blueValue)
-        self.colorPreview.setStyleSheet(f'background-color: {hexColor}')
         
         # Run the functions
         self.colorDetect()
@@ -901,32 +766,9 @@ class Ui_MainWindow(object):
         # Remove the Image file
         os.remove("Detection.png")
 
-    def captureIt(self, event):
-        """
-        This function will capture the RGB and x and y value for the Original Image and update the values as corresponding
-
-        Args:
-            event: event variable to capture the x and y values
-
-        """
-        global xValue, yValue, redValue, greenValue, blueValue, pictures, index
-        # Get the x and y coordinates from the event input
-        xValue = event.pos().x()
-        yValue = event.pos().y()
-
-        # Get the color as an list from PyQt5 dependency from the image path
-        qImg = QtGui.QImage(pictures[index][1])
-        c = qImg.pixel(xValue, yValue)
-        colors = QtGui.QColor(c).getRgb()
-
-        # Store the colors as global varialbes
-        redValue = colors[0]
-        greenValue = colors[1]
-        blueValue = colors[2]
-
     def captureCommon(self, event):
         """
-        Same idea with the captureIt function but instead it is for common color Image.
+        Capture the RGB of the common image color.
         Also, it will not remember the x and y value since it is not important.
 
         Args:
@@ -972,8 +814,8 @@ class Ui_MainWindow(object):
                 textColor = (0,0,0) 
             
             # Add the color code on the first line of each bar and Percentage of the color on the second line
-            img = cv2.putText(img, str(pictures[index][2][j]), (5, 20 + (j * 160)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
-            img = cv2.putText(img, str(pictures[index][3][j]) + "%", (5, 40 + (j * 160)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
+            img = cv2.putText(img, str(pictures[index][2][j]), (5, 20 + (j * 130)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
+            img = cv2.putText(img, str(pictures[index][3][j]) + "%", (5, 40 + (j * 130)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
         
         # If the folder common does not exists, create one
         if not os.path.exists('common'):
@@ -1006,13 +848,6 @@ class Ui_MainWindow(object):
         self.redRangeText.setText(_translate("MainWindow", "Red Range"))
         self.redAverageText.setText(_translate("MainWindow", "Red Average"))
         self.colorRangeText.setText(_translate("MainWindow", "Color Range Detection"))
-        self.yText.setText(_translate("MainWindow", "Y"))
-        self.xText.setText(_translate("MainWindow", "X"))
-        self.colorPreviewText.setText(_translate("MainWindow", "Color Preview"))
-        self.redText.setText(_translate("MainWindow", "Red"))
-        self.greenText.setText(_translate("MainWindow", "Green"))
-        self.blueText.setText(_translate("MainWindow", "Blue"))
-        self.commonColorLbl.setText(_translate("MainWindow", "TextLabel"))
 
 # Basic functions and statements to call the Main GUI to run
 if __name__ == "__main__":

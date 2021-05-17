@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
-    <height>975</height>
+    <width>1047</width>
+    <height>692</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Lesson3</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="ogImgLbl">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
-      <width>400</width>
-      <height>400</height>
+      <y>30</y>
+      <width>300</width>
+      <height>300</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -34,9 +34,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>530</y>
-      <width>400</width>
-      <height>400</height>
+      <y>390</y>
+      <width>300</width>
+      <height>300</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -49,8 +49,8 @@
    <widget class="QPushButton" name="nextBtn">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>500</y>
+      <x>220</x>
+      <y>350</y>
       <width>75</width>
       <height>20</height>
      </rect>
@@ -62,8 +62,8 @@
    <widget class="QPushButton" name="previousBtn">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>500</y>
+      <x>40</x>
+      <y>350</y>
       <width>75</width>
       <height>20</height>
      </rect>
@@ -75,8 +75,8 @@
    <widget class="QLabel" name="greenAverageText">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>360</y>
+      <x>460</x>
+      <y>290</y>
       <width>120</width>
       <height>20</height>
      </rect>
@@ -102,8 +102,8 @@
    <widget class="QLabel" name="redRangeValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>260</y>
+      <x>670</x>
+      <y>190</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -127,8 +127,8 @@
    <widget class="QLabel" name="greenRangeText">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>440</y>
+      <x>470</x>
+      <y>380</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -154,9 +154,9 @@
    <widget class="QSlider" name="greenAverageSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>390</y>
-      <width>351</width>
+      <x>390</x>
+      <y>320</y>
+      <width>255</width>
       <height>22</height>
      </rect>
     </property>
@@ -173,9 +173,9 @@
    <widget class="QSlider" name="greenRangeSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>472</y>
-      <width>351</width>
+      <x>390</x>
+      <y>402</y>
+      <width>255</width>
       <height>20</height>
      </rect>
     </property>
@@ -198,8 +198,8 @@
    <widget class="QLabel" name="blueAverageText">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>570</y>
+      <x>470</x>
+      <y>510</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -225,9 +225,9 @@
    <widget class="QSlider" name="redRangeSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>260</y>
-      <width>351</width>
+      <x>390</x>
+      <y>190</y>
+      <width>255</width>
       <height>22</height>
      </rect>
     </property>
@@ -250,9 +250,9 @@
    <widget class="QSlider" name="blueRangeSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>690</y>
-      <width>351</width>
+      <x>390</x>
+      <y>620</y>
+      <width>255</width>
       <height>22</height>
      </rect>
     </property>
@@ -272,9 +272,9 @@
    <widget class="QSlider" name="blueAverageSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>610</y>
-      <width>351</width>
+      <x>390</x>
+      <y>540</y>
+      <width>255</width>
       <height>22</height>
      </rect>
     </property>
@@ -291,9 +291,9 @@
    <widget class="Line" name="borderLineWithGB">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>540</y>
-      <width>511</width>
+      <x>340</x>
+      <y>470</y>
+      <width>391</width>
       <height>20</height>
      </rect>
     </property>
@@ -307,8 +307,8 @@
    <widget class="QLabel" name="blueRangeText">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>650</y>
+      <x>470</x>
+      <y>590</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -334,8 +334,8 @@
    <widget class="QLabel" name="redRangeText">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>230</y>
+      <x>470</x>
+      <y>170</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -361,9 +361,9 @@
    <widget class="QSlider" name="redAverageSlider">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>180</y>
-      <width>351</width>
+      <x>390</x>
+      <y>110</y>
+      <width>255</width>
       <height>22</height>
      </rect>
     </property>
@@ -380,8 +380,8 @@
    <widget class="QLabel" name="blueAverageValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>610</y>
+      <x>670</x>
+      <y>540</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -405,8 +405,8 @@
    <widget class="QLabel" name="blueRangeValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>690</y>
+      <x>670</x>
+      <y>620</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -430,8 +430,8 @@
    <widget class="QLabel" name="redAverageText">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>150</y>
+      <x>470</x>
+      <y>80</y>
       <width>100</width>
       <height>20</height>
      </rect>
@@ -457,8 +457,8 @@
    <widget class="QLabel" name="redAverageValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>180</y>
+      <x>670</x>
+      <y>110</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -482,8 +482,8 @@
    <widget class="QLabel" name="colorRangeText">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>110</y>
+      <x>410</x>
+      <y>40</y>
       <width>211</width>
       <height>21</height>
      </rect>
@@ -509,8 +509,8 @@
    <widget class="QLabel" name="greenAverageValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>390</y>
+      <x>670</x>
+      <y>320</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -534,9 +534,9 @@
    <widget class="Line" name="borderLineWithRG">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>330</y>
-      <width>511</width>
+      <x>340</x>
+      <y>260</y>
+      <width>371</width>
       <height>20</height>
      </rect>
     </property>
@@ -550,8 +550,8 @@
    <widget class="QLabel" name="greenRangeValue">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>470</y>
+      <x>670</x>
+      <y>400</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -567,298 +567,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="Line" name="borderLineWithGB_2">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>750</y>
-      <width>511</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="yText">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>770</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Y</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="xText">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>770</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="xValueText">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>810</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="colorPreviewText">
-    <property name="geometry">
-     <rect>
-      <x>790</x>
-      <y>830</y>
-      <width>130</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Color Preview</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="colorPreview">
-    <property name="geometry">
-     <rect>
-      <x>790</x>
-      <y>860</y>
-      <width>130</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="yValueText">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>810</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="redValueText">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>890</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="greenValueText">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>890</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="blueValueText">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>890</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="redText">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>870</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Red</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="greenText">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>870</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Green</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="blueText">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>870</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Blue</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -867,10 +575,10 @@
    <widget class="QLabel" name="commonColorLbl">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>120</y>
+      <x>750</x>
+      <y>30</y>
       <width>200</width>
-      <height>800</height>
+      <height>650</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -883,8 +591,8 @@
    <widget class="QSlider" name="commonColorSlider">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>460</y>
+      <x>980</x>
+      <y>340</y>
       <width>50</width>
       <height>160</height>
      </rect>
@@ -911,8 +619,8 @@
    <widget class="QLabel" name="commonColorValue">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>420</y>
+      <x>980</x>
+      <y>300</y>
       <width>50</width>
       <height>20</height>
      </rect>
@@ -928,52 +636,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="author">
-    <property name="geometry">
-     <rect>
-      <x>1180</x>
-      <y>940</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>By Kenneth Kang</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="title">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>10</y>
-      <width>1141</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="text">
-     <string>URSA 2020~2021 Explanable Computer Vision Settings</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
