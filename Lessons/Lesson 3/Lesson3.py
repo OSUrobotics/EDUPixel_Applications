@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
                 Object Name: Function
 
             Timer: Set a timer for every 0.01 second to trigger updateValue function
-            
+
             Button: By pressing the button will trigger certain function
                nextBtn: nextImage function
                previousBtn: previousImage
@@ -66,8 +66,8 @@ class Ui_MainWindow(object):
                 greenAverageSlider: greenAverageUpdate function
                 greenRangeSlider: greenRangeUpdate function
                 blueAverageSlider: blueAverageUpdate function
-                blueRangeSlider: blueRangeUpdate function 
-            
+                blueRangeSlider: blueRangeUpdate function
+
             Mouse: By clicking certain location with the mouse, it will trigger certain function
                 commonColorLbl event: captureCommon function
         Args:
@@ -342,8 +342,8 @@ class Ui_MainWindow(object):
         self.timer = QtCore.QTimer()
 
         self.readFile()
-        
-        # Timer 
+
+        # Timer
         self.timer.timeout.connect(self.update)
         self.timer.start(10)
 
@@ -364,14 +364,22 @@ class Ui_MainWindow(object):
         self.commonColorSlider.valueChanged.connect(self.commonColorNumUpdate)
 
     def readFile(self):
-        """ 
-        Before the whole GUI is launch, this function will be triggered. 
-        This will read every single image file that is contained inside the OG folder. 
-        Then save it with the size of 300 width and 300 height inside the image folder. 
-        After that, it will calculate common top 5 colors and proportion. 
-        Throughout the function, all the data will be saved inside pictures global variable. 
-        Once everydata is complete, it will be saved into pickle file so that reduce the complie time for next run. 
-        Last, when the image is added or removed, it will automatically do itself. 
+        folderSeparator = ''
+        from sys import platform
+        if platform == "linux" or platform == "linux2":
+            folderSeparator = '/'
+        elif platform == "darwin":
+            folderSeparator = '/'
+        elif platform == "win32":
+            folderSeparator = '\\'
+        """
+        Before the whole GUI is launch, this function will be triggered.
+        This will read every single image file that is contained inside the OG folder.
+        Then save it with the size of 300 width and 300 height inside the image folder.
+        After that, it will calculate common top 5 colors and proportion.
+        Throughout the function, all the data will be saved inside pictures global variable.
+        Once everydata is complete, it will be saved into pickle file so that reduce the complie time for next run.
+        Last, when the image is added or removed, it will automatically do itself.
 
         Related Function:
             analyzeColor(filePath, ind)
@@ -382,7 +390,7 @@ class Ui_MainWindow(object):
         removedPic = []
         fileNum = 0
         j = 0
-        path = os.path.abspath(os.getcwd()) + "\OG"
+        path = os.path.abspath(os.getcwd()) + folderSeparator + "OG"
         # If these folder/file do not exists, create one
         if not os.path.exists('images'):
             os.makedirs('images')
@@ -390,25 +398,25 @@ class Ui_MainWindow(object):
             f = open("Pic.pickle", "x")
             new = True
         else:
-        # if the file exists, open it and call the data 
+        # if the file exists, open it and call the data
             old_file = open("Pic.pickle", 'rb')
             pictures = pickle.load(old_file)
             old_file.close()
 
         # Count how many images are inside the OG folder
         fileNum = len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
-        
+
         #TODO: There is a bug of the remove process: I don't know how to solve it
 
         # If this was first run, then ignore the remove since there is nothing to remove
         if new == False:
-            
+
             # If the length of list is long than the number of images or same, then we know something removed or changed
             if fileNum <= len(pictures):
-                
+
                 # Find each index what has changed and save it in a different list
                 for i, filename in enumerate(os.listdir(path)):
-                    if pictures[j][0] != (path + "\\"+  filename):
+                    if pictures[j][0] != (path + folderSeparator + filename):
                         removedPic.append(i)
                         removed += 1
                         j += 1
@@ -419,21 +427,21 @@ class Ui_MainWindow(object):
                     index = removedPic.pop()
                     os.remove(pictures[index][1])
                     del pictures[index]
-                
+
                 # If the list is still longer than number of images, then remove the end values of the list until it matchs the number of images
                 if fileNum < len(pictures):
                     difference = len(pictures) - fileNum
                     for i in range (difference):
                         removePicList = pictures.pop()
                         os.remove(removePicList[1])
-                        print(pictures)        
+                        print(pictures)
 
 
         for i, filename in enumerate(os.listdir(path)):
             # only run first cold start with no data
             if new:
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
+                imgPath = os.path.abspath(os.getcwd()) + folderSeparator + "images" + folderSeparator + f"{filename + str(i)}.png"
                 dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -445,7 +453,7 @@ class Ui_MainWindow(object):
             # If image is added, it will add at the end or in between: this will add at the last
             elif len(pictures) <= i:
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
+                imgPath = os.path.abspath(os.getcwd()) + folderSeparator + "images" + folderSeparator + f"{filename + str(i)}.png"
                 dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -453,11 +461,11 @@ class Ui_MainWindow(object):
                 pictures[i].append(os.path.join(path, filename))
                 pictures[i].append(imgPath)
                 self.analyzeColor(imgPath, i)
-            
-            # This will add in-between the list 
+
+            # This will add in-between the list
             elif pictures[i][0] != os.path.join(path, filename):
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
+                imgPath = os.path.abspath(os.getcwd()) + folderSeparator + "images" + folderSeparator + f"{filename + str(i)}.png"
                 dsize = (300,300)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -486,7 +494,7 @@ class Ui_MainWindow(object):
             ind: index of the pictures list, Int
 
         Related Functions:
-            make_histogram(cluster) 
+            make_histogram(cluster)
         """
         global pictures
         # read the image
@@ -555,14 +563,14 @@ class Ui_MainWindow(object):
         This will raise an error message when it hits the end/right end
 
         Related Function:
-            error() 
+            error()
         """
         global pictures, index
         # If the list is at the end, raise an error to the user
         if (index  == len(pictures) - 1):
             self.error()
             return False
-        
+
         # Otherwise, update the index by adding 1
         index += 1
 
@@ -578,7 +586,7 @@ class Ui_MainWindow(object):
         This will raise an error message when it hits the end/left end
 
         Related Function:
-            error() 
+            error()
         """
         global index, pictures
         # If the index value is 0, since that is the end of the list, it will raise an error to the user
@@ -592,7 +600,7 @@ class Ui_MainWindow(object):
         # As the index value updates, update the display accordingly
         pixmap = QtGui.QPixmap(pictures[index][1])
         self.ogImgLbl.setPixmap(pixmap)
-        self.ogImgLbl.setAlignment(QtCore.Qt.AlignLeft) 
+        self.ogImgLbl.setAlignment(QtCore.Qt.AlignLeft)
 
     def error(self):
         """
@@ -610,7 +618,7 @@ class Ui_MainWindow(object):
         """
         global num
         num = self.commonColorSlider.sliderPosition()
-    
+
     def redRangeUpdate(self):
         """
         This function will update the value of redRange when the redRangeSlider is moved
@@ -652,7 +660,7 @@ class Ui_MainWindow(object):
         """
         global blueAverage
         blueAverage = self.blueAverageSlider.sliderPosition()
-    
+
     def update(self):
         """
         This function will be (almost) continuously running when the GUI is up.
@@ -663,7 +671,7 @@ class Ui_MainWindow(object):
             colorDetect()
             showCommonColor()
         """
-        
+
         global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange, redValue, greenValue, blueValue, num
 
         # Update the Text Value
@@ -682,7 +690,7 @@ class Ui_MainWindow(object):
         self.greenRangeSlider.setSliderPosition(greenRange)
         self.blueAverageSlider.setSliderPosition(blueAverage)
         self.blueRangeSlider.setSliderPosition(blueRange)
-        
+
         # Run the functions
         self.colorDetect()
         self.showCommonColor()
@@ -693,12 +701,12 @@ class Ui_MainWindow(object):
         At the same time, if the user hits a limit, it will adjust to the max or min value.
         Also, when the user selects 128 for average value and range for 127, it will automatically switch min value to 0 even though it is techically 1
         Once the calculations are complete, it will trigger the color_detect function.
-        
+
         Related Function:
             color_detect(redMin, redMax, greenMin, greenMax, blueMin, blueMax)
         """
         global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange
-        
+
         redMin = redAverage - redRange
         if (redMin < 0) or (redAverage == 128 and redRange == 127):
             redMin = 0
@@ -724,7 +732,7 @@ class Ui_MainWindow(object):
         """
         Show the image color if the color is in the range that the user wants to see
         If it is not, it will show as (0,255,255): skyblue
-        
+
         Args:
             redMin: Red Min value from Red Average - Red Range, Int
             redMax: Red Max value from Red Average + Red Range, Int
@@ -732,7 +740,7 @@ class Ui_MainWindow(object):
             greenMax: Green Max value from Green Average + Green Range, Int
             blueMin: Blue Min value from Blue Average - Blue Range, Int
             blueMax: Blue Max value from Blue Average + Blue Range, Int
-        
+
         """
         global pictures, index
         # Read the Image
@@ -741,7 +749,7 @@ class Ui_MainWindow(object):
         # Set an Array from Numpy for Lower and Upper bounds
         Lower = np.array([blueMin, greenMin, redMin], dtype = "uint8")
         Upper = np.array([blueMax, greenMax, redMax], dtype = "uint8")
-        
+
         # If the color pixel is in range, then remain the color, otherwise change it to black
         mask = cv2.inRange(img, Lower, Upper)
         output = cv2.bitwise_and(img, img, mask = mask)
@@ -751,7 +759,7 @@ class Ui_MainWindow(object):
 
         # Change the background color (255,255,0)  == (B,G,R) for custom color
         newBackground[mask == 0] = (255,255,0)
-        
+
         # Make the Image file for temporary
         cv2.imwrite("Detection.png", newBackground)
         fileName = "Detection.png"
@@ -803,23 +811,23 @@ class Ui_MainWindow(object):
 
         # Make an image in a vertical stack of bars that was appened into the bars list
         img = np.vstack(bars)
-        
+
         for j in range(num):
             # If the color is too dark (a.k.a black), display the text color as white, otherwise black
             if (pictures[index][2][j][0] <= 100) and (pictures[index][2][j][1] <= 100)  and (pictures[index][2][j][2] <= 100):
                 textColor = (255, 255, 255)
             else:
-                textColor = (0,0,0) 
-            
+                textColor = (0,0,0)
+
             # Add the color code on the first line of each bar and Percentage of the color on the second line
             img = cv2.putText(img, str(pictures[index][2][j]), (5, 20 + (j * 130)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
             img = cv2.putText(img, str(pictures[index][3][j]) + "%", (5, 40 + (j * 130)), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
-        
+
         # If the folder common does not exists, create one
         if not os.path.exists('common'):
             os.makedirs('common')
-        
-        # Create an image file with the common color 
+
+        # Create an image file with the common color
         cv2.imwrite("common\Common_Colors.png", img)
         fileName = "common\Common_Colors.png"
 

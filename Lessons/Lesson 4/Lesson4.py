@@ -63,9 +63,9 @@ class Ui_MainWindow(object):
                 greenAverageSlider: greenAverageUpdate function
                 greenRangeSlider: greenRangeUpdate function
                 blueAverageSlider: blueAverageUpdate function
-                blueRangeSlider: blueRangeUpdate function 
+                blueRangeSlider: blueRangeUpdate function
                 commonColorSlider: commonColorNumUpdate function
-            
+
             Mouse: By clicking certain location with the mouse, it will trigger certain function
                 exImg1 and ogImg1: img1Select function
                 exImg2 and ogImg2: img2Select function
@@ -426,7 +426,7 @@ class Ui_MainWindow(object):
 
         # Mouse
         self.commonColorLbl.mousePressEvent = self.captureCommon
-        
+
         self.exImg1.mousePressEvent = self.img1Select
         self.ogImg1.mousePressEvent = self.img1Select
 
@@ -463,16 +463,24 @@ class Ui_MainWindow(object):
         self.blueRangeSlider.valueChanged.connect(self.blueRangeUpdate)
         self.commonColorSlider.valueChanged.connect(self.commonColorNumUpdate)
 
-    
+
     def readFile(self):
-        """ 
-        Before the whole GUI is launch, this function will be triggered. 
-        This will read every single image file that is contained inside the OG folder. 
-        Then save it with the size of 400 width and 400 height inside the image folder. 
-        After that, it will calculate common top 5 colors and proportion. 
-        Throughout the function, all the data will be saved inside pictures global variable. 
-        Once everydata is complete, it will be saved into pickle file so that reduce the complie time for next run. 
-        Last, when the image is added or removed, it will automatically do itself. 
+        folderSeparator = ''
+        from sys import platform
+        if platform == "linux" or platform == "linux2":
+            folderSeparator = '/'
+        elif platform == "darwin":
+            folderSeparator = '/'
+        elif platform == "win32":
+            folderSeparator = '\\'
+        """
+        Before the whole GUI is launch, this function will be triggered.
+        This will read every single image file that is contained inside the OG folder.
+        Then save it with the size of 400 width and 400 height inside the image folder.
+        After that, it will calculate common top 5 colors and proportion.
+        Throughout the function, all the data will be saved inside pictures global variable.
+        Once everydata is complete, it will be saved into pickle file so that reduce the complie time for next run.
+        Last, when the image is added or removed, it will automatically do itself.
 
         Related Function:
             analyzeColor(filePath, ind)
@@ -480,7 +488,7 @@ class Ui_MainWindow(object):
         global pictures
         new = False
         ogObjects = [self.ogImg1, self.ogImg2, self.ogImg3, self.ogImg4, self.ogImg5, self.ogImg6, self.ogImg7, self.ogImg8, self.ogImg9]
-        path = os.path.abspath(os.getcwd()) + "\OG"
+        path = os.path.abspath(os.getcwd()) + folderSeparator + "OG"
 
         # If these folder/file do not exists, create one
         if not os.path.exists('images'):
@@ -492,7 +500,7 @@ class Ui_MainWindow(object):
             f = open("Pic.pickle", "w")
             new = True
         else:
-        # if the file exists, open it and call the data 
+        # if the file exists, open it and call the data
             old_file = open("Pic.pickle", 'rb')
             pictures = pickle.load(old_file)
             old_file.close()
@@ -501,7 +509,7 @@ class Ui_MainWindow(object):
             # only run first cold start with no data
             if new:
                 img = cv2.imread(os.path.join(path, filename))
-                imgPath = os.path.abspath(os.getcwd()) + f"\images\{filename + str(i)}.png"
+                imgPath = os.path.abspath(os.getcwd()) + folderSeparator + "images" + folderSeparator + f"{filename + str(i)}.png"
                 dsize = (150,150)
                 output = cv2.resize(img, dsize)
                 cv2.imwrite(imgPath, output)
@@ -532,7 +540,7 @@ class Ui_MainWindow(object):
             ind: index of the pictures list, Int
 
         Related Functions:
-            make_histogram(cluster) 
+            make_histogram(cluster)
         """
         global pictures
         # read the image
@@ -587,7 +595,7 @@ class Ui_MainWindow(object):
         """
         global num
         num = self.commonColorSlider.sliderPosition()
-    
+
     def redRangeUpdate(self):
         """
         This function will update the value of redRange when the redRangeSlider is moved
@@ -629,7 +637,7 @@ class Ui_MainWindow(object):
         """
         global blueAverage
         blueAverage = self.blueAverageSlider.sliderPosition()
-    
+
     def update(self):
         """
         This function will be (almost) continuously running when the GUI is up.
@@ -640,7 +648,7 @@ class Ui_MainWindow(object):
             colorDetect()
             showCommonColor()
         """
-        
+
         global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange, num, index
 
         # Update the Text Value
@@ -662,7 +670,7 @@ class Ui_MainWindow(object):
 
         self.colorDetect()
         self.showCommonColor(index)
-        
+
 
 
     def captureCommon(self, event):
@@ -783,23 +791,23 @@ class Ui_MainWindow(object):
 
         # Make an image in a vertical stack of bars that was appened into the bars list
         img = np.hstack(bars)
-        
+
         for j in range(num):
             # If the color is too dark (a.k.a black), display the text color as white, otherwise black
             if (pictures[index][2][j][0] <= 100) and (pictures[index][2][j][1] <= 100)  and (pictures[index][2][j][2] <= 100):
                 textColor = (255, 255, 255)
             else:
-                textColor = (0,0,0) 
-            
+                textColor = (0,0,0)
+
             # Add the color code on the first line of each bar and Percentage of the color on the second line
             img = cv2.putText(img, str(pictures[index][2][j]), (5 + (j * 160), 20), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
             img = cv2.putText(img, str(pictures[index][3][j]) + "%", (5+ (j * 160) , 40 ), cv2.FONT_HERSHEY_TRIPLEX, 0.5, textColor, 1, cv2.LINE_AA)
-        
+
         # If the folder common does not exists, create one
         if not os.path.exists('common'):
             os.makedirs('common')
-        
-        # Create an image file with the common color 
+
+        # Create an image file with the common color
         cv2.imwrite("common\Common_Colors.png", img)
         fileName = "common\Common_Colors.png"
 
@@ -815,12 +823,12 @@ class Ui_MainWindow(object):
         At the same time, if the user hits a limit, it will adjust to the max or min value.
         Also, when the user selects 128 for average value and range for 127, it will automatically switch min value to 0 even though it is techically 1
         Once the calculations are complete, it will trigger the color_detect function.
-        
+
         Related Function:
             color_detect(redMin, redMax, greenMin, greenMax, blueMin, blueMax)
         """
         global redAverage, redRange, greenAverage, greenRange, blueAverage, blueRange
-        
+
         redMin = redAverage - redRange
         if (redMin < 0) or (redAverage == 128 and redRange == 127):
             redMin = 0
@@ -846,7 +854,7 @@ class Ui_MainWindow(object):
         """
         Show the image color if the color is in the range that the user wants to see
         If it is not, it will show as (0,255,255): skyblue
-        
+
         Args:
             redMin: Red Min value from Red Average - Red Range, Int
             redMax: Red Max value from Red Average + Red Range, Int
@@ -854,7 +862,7 @@ class Ui_MainWindow(object):
             greenMax: Green Max value from Green Average + Green Range, Int
             blueMin: Blue Min value from Blue Average - Blue Range, Int
             blueMax: Blue Max value from Blue Average + Blue Range, Int
-        
+
         """
         global pictures
         exObjects = [self.exImg1, self.exImg2, self.exImg3, self.exImg4, self.exImg5, self.exImg6, self.exImg7, self.exImg8, self.exImg9]
@@ -865,7 +873,7 @@ class Ui_MainWindow(object):
         # Set an Array from Numpy for Lower and Upper bounds
             Lower = np.array([blueMin, greenMin, redMin], dtype = "uint8")
             Upper = np.array([blueMax, greenMax, redMax], dtype = "uint8")
-        
+
         # If the color pixel is in range, then remain the color, otherwise change it to black
             mask = cv2.inRange(img, Lower, Upper)
             output = cv2.bitwise_and(img, img, mask = mask)
@@ -875,7 +883,7 @@ class Ui_MainWindow(object):
 
         # Change the background color (255,255,0)  == (B,G,R) for custom color
             newBackground[mask == 0] = (255,255,0)
-        
+
         # Make the Image file for temporary
             cv2.imwrite("Detection.png", newBackground)
             fileName = "Detection.png"
