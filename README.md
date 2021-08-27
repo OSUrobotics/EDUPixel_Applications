@@ -46,5 +46,8 @@ ERROR: No matching distribution found for pyqt5-plugins==5.15.2.2.0.1
 
 Run this command: ```pip3 install pyqt5-tools``` to install all the plugins related to pyqt5.
 
-2. If you run into this issue: ModuleNotFoundError: No module named 'sklearn'
+2. If you run into this issue: 
+
+ModuleNotFoundError: No module named 'sklearn'
+
 Run this command: ```pip3 install scikit-learn```
