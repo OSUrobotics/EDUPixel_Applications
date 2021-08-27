@@ -39,7 +39,7 @@ If you want to run this program by yourself, I would recommend to follow the ins
 4. Go to the Lessons Folder and follow each lesson to learn and run the code upon it: only run ```.py``` files, not other files.
 
 ## Note
-1. If you run into the issue written below after entering the command ```pip install -r requirments.txt```: 
+1. If you run into the issue written below after entering the command ```pip3 install -r requirments.txt```: 
 
 ERROR: Could not find a version that satisfies the requirement pyqt5-plugins==5.15.2.2.0.1 (from versions: 5.14.2.2.1, 5.14.2.2.2, 5.15.0.2.1, 5.15.0.2.2, 5.15.1.2.1, 5.15.1.2.2, 5.15.2.2.1, 5.15.2.2.2, 5.15.3.2.1, 5.15.3.2.2, 5.15.4.2.1, 5.15.4.2.2)
 ERROR: No matching distribution found for pyqt5-plugins==5.15.2.2.0.1
