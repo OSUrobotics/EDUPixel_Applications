@@ -40,7 +40,11 @@ If you want to run this program by yourself, I would recommend to follow the ins
 
 ## Note
 1. If you run into the issue written below after entering the command ```pip install -r requirments.txt```: 
+
 ERROR: Could not find a version that satisfies the requirement pyqt5-plugins==5.15.2.2.0.1 (from versions: 5.14.2.2.1, 5.14.2.2.2, 5.15.0.2.1, 5.15.0.2.2, 5.15.1.2.1, 5.15.1.2.2, 5.15.2.2.1, 5.15.2.2.2, 5.15.3.2.1, 5.15.3.2.2, 5.15.4.2.1, 5.15.4.2.2)
 ERROR: No matching distribution found for pyqt5-plugins==5.15.2.2.0.1
 
-Run this code: ```pip3 install pyqt5-tools``` to install all the plugins related to pyqt5.
+Run this command: ```pip3 install pyqt5-tools``` to install all the plugins related to pyqt5.
+
+2. If you run into this issue: ModuleNotFoundError: No module named 'sklearn'
+Run this command: ```pip3 install scikit-learn```
